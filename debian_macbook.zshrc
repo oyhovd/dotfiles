@@ -87,7 +87,9 @@ source $ZSH/oh-my-zsh.sh
 alias gs="git status"
 
 #zephyr-stuff
-export ZEPHYR_BASE="/home/oyho/devel/zephyr"
-export ZEPHYR_SDK_INSTALL_DIR="/home/oyho/opt/zephyr-sdk"
+export ZEPHYR_BASE="$HOME/devel/zephyr"
+export ZEPHYR_SDK_INSTALL_DIR="$HOME/opt/zephyr-sdk"
 export ZEPHYR_GCC_VARIANT=zephyr
-source ~/src/zephyr/zephyr-env.sh
+source $HOME/devel/zephyr/zephyr-env.sh
+
+export PATH="$HOME/bin:$PATH"
