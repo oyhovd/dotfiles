@@ -130,3 +130,6 @@ function dbg52()
 }
 
 export PATH="$HOME/bin:$PATH"
+
+#turn off nagging for password (turn of energy star)
+xset -dpms

@@ -153,3 +153,6 @@ function dbg52()
   JLinkGDBServer -device nrf52 -if swd -speed 4000 &                      
   /home/carles/prog/zephyr-sdk/sysroots/i686-pokysdk-linux/usr/bin/arm-poky-eabi/arm-poky-eabi-gdb
 }
+
+#turn off nagging for password (turn of energy star)
+xset -dpms
