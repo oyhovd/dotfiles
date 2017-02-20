@@ -133,3 +133,5 @@ export PATH="$HOME/bin:$PATH"
 
 #turn off nagging for password (turn of energy star)
 xset -dpms
+
+alias gdb="gdb-multiarch"
