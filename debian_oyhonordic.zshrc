@@ -86,14 +86,39 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias gs="git status"
+source $HOME/dotfiles/.bashrc
+
+#alias win="ssh -t 192.168.56.1 'cd `pwd | sed s:/home/oyho/::` ; zsh'"
+#just to overload the common bashrc version
+alias mbrupdate="/home/oyho/bin/mbrupdate.sh"
+
+#ARM Compiler 5 stuff
+export PATH="/usr/local/ARM_Compiler_5.06u4/bin:$PATH"
+export PATH="/usr/local/gcc-arm-none-eabi-5_4-2016q3/bin/:$PATH"
+export ARMLMD_LICENSE_FILE=1714@licsrv1
+export ARM_TOOL_VARIANT=mdk_pro_flex
+
+#Keil stuff
+export KEIL_PATH=/home/oyho/armstuff
+export FAMILY_PACK_PATH=/home/oyho/armstuff/ARM/Pack/NordicSemiconductor/nRF_DeviceFamilyPack/8.9.0/Device
+export CMSIS_PATH=/home/oyho/armstuff/ARM/Pack/ARM/CMSIS/4.1.0/CMSIS
+
+#YouCompleteMe
+export CMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+
+#if using TMUX
+#[[ $TERM = "xterm" ]] && { tmux && exit 0; }
+
+#flash script
+alias flash="/home/oyho/devel/debug-tools/flash"
+
 
 #zephyr-stuff
 export ZEPHYR_BASE="$HOME/devel/zephyr"
 export ZEPHYR_SDK_INSTALL_DIR="$HOME/opt/zephyr-sdk"
 export ZEPHYR_GCC_VARIANT=zephyr
 source $HOME/devel/zephyr/zephyr-env.sh
-
 
 function cpatch()                                                              
 {                                                                              
@@ -128,5 +153,3 @@ function dbg52()
   JLinkGDBServer -device nrf52 -if swd -speed 4000 &                      
   /home/carles/prog/zephyr-sdk/sysroots/i686-pokysdk-linux/usr/bin/arm-poky-eabi/arm-poky-eabi-gdb
 }
-
-export PATH="$HOME/bin:$PATH"

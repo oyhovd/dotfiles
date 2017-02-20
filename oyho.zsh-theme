@@ -12,23 +12,41 @@ case ${SOLARIZED_THEME:-dark} in
     *)     bkg=black;;
 esac
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{blue}%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%k%b%K{${bkg}}%B%F{green}%}]"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{%F{red}%}*%{%f%k%b%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{green}%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{%F{red}%} * %{%f%}%{%B%F{blue}%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%B%F{green}%}]"
+ZSH_THEME_GIT_PROMPT_CLEAN=" %{%B%F{blue}%}"
 
 PROMPT='%{%f%k%b%}
-%{%K{${bkg}}%B%F{green}%}%n@%m %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
+%{%K{${bkg}}%B%F{green}%}%n@%m %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info_oyho)%E%{%f%k%b%}
 %{%K{${bkg}}%}%{%K{${bkg}}%}!%{%B%F{cyan}%}%!%{%f%k%b%} ${ret_color}$%{%f%k%b%} '
 
-# for printing git prompt quicker, but also printing detached heads
-function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null)
-  if [[ ! -z $ref ]] then
-    ref=${ref#refs/heads/}
-  else
-    ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+# git_remote_status
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="-"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="+"
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="<>"
+ZSH_THEME_GIT_PROMPT_EQUAL_REMOTE="="
+ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED="true"
+
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR="%F{green}"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR="%F{red}"
+
+function git_prompt_info_oyho() {
+  local ref
+  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$(git_remote_status)$ZSH_THEME_GIT_PROMPT_SUFFIX"
   fi
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref}${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+
+#echo $(git_prompt_info) $(git_remote_status)
+
+#  ref=$(git symbolic-ref HEAD 2> /dev/null)
+#  if [[ ! -z $ref ]] then
+#    ref=${ref#refs/heads/}
+#  else
+#    ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+#  fi
+#  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref}${ZSH_THEME_GIT_PROMPT_SUFFIX}"
 }
 
