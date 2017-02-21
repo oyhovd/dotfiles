@@ -91,3 +91,4 @@ export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report i
 
 #adding private bin for overloading tools etc
 export PATH="$HOME/bin:$PATH"
+

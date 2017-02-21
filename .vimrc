@@ -43,7 +43,7 @@ set backspace=2
 set completeopt+=longest
 set completeopt+=menuone
 "set completeopt-=preview
-set updatetime=250
+"set updatetime=250
 let mapleader = "\<Space>"
 if has('nvim')
 set ffs=unix,dos
@@ -69,14 +69,22 @@ set formatoptions-=t
 set spell spelllang=en_us
 set nospell
 "let g:load_doxygen_syntax=1
+let g:SpellStatus=1
+function! SpellOnOff()
+  if (g:SpellStatus)
+    setlocal spell
+  else
+    setlocal nospell
+  endif
+endfunction
 au FileType qf                       setlocal nospell
 au BufNewFile,BufRead,BufEnter *     setlocal nospell
 au BufNewFile,BufRead,BufEnter *.dox setf doxygen
-au BufNewFile,BufRead,BufEnter *.dox setlocal spell
-au BufNewFile,BufRead,BufEnter *.h   setlocal spell
-au BufNewFile,BufRead,BufEnter *.h.in setlocal spell
+au BufNewFile,BufRead,BufEnter *.dox call SpellOnOff()
+au BufNewFile,BufRead,BufEnter *.h   call SpellOnOff()
+au BufNewFile,BufRead,BufEnter *.h.in call SpellOnOff()
 "Commit messages
-au BufNewFile,BufRead,BufEnter *EDITMSG   setlocal spell
+au BufNewFile,BufRead,BufEnter *EDITMSG   call SpellOnOff()
 set complete+=kspell
 
 "save session in case of instability...
@@ -146,10 +154,10 @@ endif
 "ctrlp stuff
 " ignore gitignored files
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"if executable('ag')
-if has('nvim')
-  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  "if has('nvim')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
 endif
 
 let g:ctrlp_map = '<c-p>'
@@ -289,22 +297,29 @@ command! GdbJlinkServerKill call GdbJlinkServerKill()
 
 "commenting
 "put comment string into c register
-autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let CommentString = "//"
-autocmd BufEnter *.s :let CommentString = ";"
-autocmd BufEnter *.py,*.sh :let CommentString = "#"
-autocmd BufEnter *.vimrc,*.vim :let CommentString = "\""
+autocmd BufEnter * :let g:CommentString = ""
+autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let g:CommentString = "//"
+autocmd BufEnter *.s :let g:CommentString = ";"
+autocmd BufEnter *.py,*.sh :let g:CommentString = "#"
+autocmd BufEnter *.vimrc,*.vim :let g:CommentString = "\""
 "get characters in comment string into u register
-autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let CommentStringLength = 2
-autocmd BufEnter *.s :let CommentStringLength = 1
-autocmd BufEnter *.py,*.sh :let CommentStringLength = 1
-autocmd BufEnter *.vimrc,*.vim :let CommentStringLength = 1
+autocmd BufEnter * :let g:CommentStringLength = 0
+autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let g:CommentStringLength = 2
+autocmd BufEnter *.s :let g:CommentStringLength = 1
+autocmd BufEnter *.py,*.sh :let g:CommentStringLength = 1
+autocmd BufEnter *.vimrc,*.vim :let g:CommentStringLength = 1
 
 "line
-nmap \ :normal 0i<c-r>=CommentString<CR><CR>+
-nmap <bar> :normal _<c-r>=CommentStringLength<CR>x<CR>+
+function! InsertCommentString()
+  let @"=g:CommentString
+  :normal 0P+
+endfunction
+
+nmap \ :call InsertCommentString()<CR>
+nmap <bar> :normal _<c-r>=g:CommentStringLength<CR>x<CR>+
 "selection
-vmap \ :normal 0i<c-r>=CommentString<CR><CR>+
-vmap <bar> :normal _<c-r>=CommentStringLength<CR>x<CR>+
+vmap \ :call InsertCommentString()<CR>
+vmap <bar> :normal _<c-r>=g:CommentStringLength<CR>x<CR>+
 
 "GPIO debugging
 function! PinDebug()
