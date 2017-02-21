@@ -4,21 +4,6 @@
 "neovim embedded terminal scrollback
 let g:terminal_scrollback_buffer_size = 100000
 
-"terminal in split windows
-function! MyTerminal(cmd)
-  let l:full_command = a:cmd
-  split
-  if a:cmd ==# ""
-    terminal
-  else
-    enew
-    call termopen(l:full_command)
-"    startinsert
-  endif
-endfunction
-command! -nargs=* Terminal call MyTerminal(<q-args>)
-command! -nargs=* Te call MyTerminal(<q-args>)
-
 "esc out of terminal
 "tnoremap <Esc> <C-\><C-n>
 
@@ -110,8 +95,6 @@ imap <Left> <Nop>
 imap <Right> <Nop>
 "nmap <Tab> :tabnext<CR>
 "nmap <S-Tab> :tabprevious<CR>
-
-nmap <Leader>te :sp<CR>:te<CR>
 
 nmap <Leader>m <c-w>_<c-w><Bar>
 nmap <Leader>+ <c-w>_<c-w><Bar>

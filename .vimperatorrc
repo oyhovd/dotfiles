@@ -1,0 +1,10 @@
+" C-f to find
+noremap <C-f> /
+
+" C-z to undo
+noremap <C-z> :undo<CR>
+
+" navigate tabs
+nnoremap <S-Tab> :tabprevious<CR>
+nnoremap <Tab> :tabnext<CR>
+
