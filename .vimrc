@@ -73,7 +73,7 @@ au BufNewFile,BufRead,BufEnter *EDITMSG   call SpellOnOff()
 set complete+=kspell
 
 "save session in case of instability...
-autocmd BufWritePre * :mks! ~/vimsessions/autosave
+autocmd BufWritePre * :mks! ~/.vim/autosave
 
 "highlighting
 highlight WhitespaceEOL ctermbg=darkred guibg=darkred
