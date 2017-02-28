@@ -150,8 +150,12 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "grepping
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
-nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
-nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
+let grepexcludedirs = '"*.git*","build*",outdir'
+let grepexcludefiles = '"objdump*","assert_table*",build.ninja'
+"nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
+"nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
+nmap <Leader>ff :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -e "
+nmap <Leader>f/ :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -e "<c-r>/"<CR>
 
 "relative line numbers
 function! NumberToggle()
