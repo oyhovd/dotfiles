@@ -63,13 +63,13 @@ function! SpellOnOff()
   endif
 endfunction
 au FileType qf                       setlocal nospell
-au BufNewFile,BufRead,BufEnter *     setlocal nospell
-au BufNewFile,BufRead,BufEnter *.dox setf doxygen
-au BufNewFile,BufRead,BufEnter *.dox call SpellOnOff()
-au BufNewFile,BufRead,BufEnter *.h   call SpellOnOff()
-au BufNewFile,BufRead,BufEnter *.h.in call SpellOnOff()
+au BufNewFile,BufRead *     setlocal nospell
+au BufNewFile,BufRead *.dox setf doxygen
+au BufNewFile,BufRead *.dox call SpellOnOff()
+au BufNewFile,BufRead *.h   call SpellOnOff()
+au BufNewFile,BufRead *.h.in call SpellOnOff()
 "Commit messages
-au BufNewFile,BufRead,BufEnter *EDITMSG   call SpellOnOff()
+au BufNewFile,BufRead *EDITMSG   call SpellOnOff()
 set complete+=kspell
 
 "save session in case of instability...
@@ -78,8 +78,8 @@ autocmd BufWritePre * :mks! ~/.vim/autosave
 "highlighting
 highlight WhitespaceEOL ctermbg=darkred guibg=darkred
 highlight Tabs ctermbg=blue guibg=blue
-au BufNewFile,BufRead,BufEnter * match WhitespaceEOL /\s\+$/
-au BufNewFile,BufRead,BufEnter * 2match Tabs /\t\+/
+au BufNewFile,BufRead * match WhitespaceEOL /\s\+$/
+au BufNewFile,BufRead * 2match Tabs /\t\+/
 
 "sed swpfile dir
 :set directory=$HOME/.vim/swapfiles//
