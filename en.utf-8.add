@@ -1,0 +1,12 @@
+@retval
+@endmscs
+@param
+@mscs
+@endevents
+@mmsc
+NRF_ERROR
+BLE_ERROR
+NRF_SUCCESS
+ATT_MTU
+MTU
+@addtogroup

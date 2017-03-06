@@ -52,6 +52,7 @@ set formatoptions-=t
 
 "spell checking
 set spell spelllang=en_us
+set spellfile=~/dotfiles/en.utf-8.add
 set nospell
 "let g:load_doxygen_syntax=1
 let g:SpellStatus=1
