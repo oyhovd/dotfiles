@@ -10,3 +10,15 @@ NRF_SUCCESS
 ATT_MTU
 MTU
 @addtogroup
+SoftDevice
+Namespace
+Bluetooth
+Namespaces
+@defgroup
+UTF
+GATT
+GATTS
+BLE
+ATT
+(c)
+struct

@@ -52,7 +52,13 @@ set formatoptions-=t
 
 "spell checking
 set spell spelllang=en_us
-set spellfile=~/dotfiles/en.utf-8.add
+"Rebuild spell file if the word list has changed (e.g. from Git)
+for d in glob('~/dotfiles/spell/*.add', 1, 1)
+  if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
+    exec 'mkspell! ' . fnameescape(d)
+  endif
+endfor
+set spellfile=~/dotfiles/spell/en.utf-8.add
 set nospell
 "let g:load_doxygen_syntax=1
 let g:SpellStatus=1
