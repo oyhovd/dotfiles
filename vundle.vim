@@ -47,6 +47,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/Conque-GDB'
 Plugin 'rust-lang/rust.vim'
+Plugin 'dodie/vim-disapprove-deep-indentation'
+"sudo apt-get install ttf-unifont to show the character
 if has('nvim')
   Plugin 'Valloric/YouCompleteMe'
 endif
