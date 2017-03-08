@@ -14,3 +14,7 @@ export ARM_TOOL_VARIANT=mdk_pro_flex
 alias flash="/home/oyho/devel/debug-tools/flash"
 
 alias gdb="gdb-multiarch"
+
+export CTEST_OUTPUT_ON_FAILURE=1                     # You don't have to set --output-on-failure everytime you call ctest.
+export CMOCKA_MESSAGE_OUTPUT=STDOUT #|SUBUNIT|TAP|XML  # Determines the output format of cmocka.
+export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report into the file test-report.xml
