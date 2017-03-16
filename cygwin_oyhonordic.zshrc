@@ -1,3 +1,8 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/cygdrive/c/cygwin64/bin:$PATH"
+export PATH="/cygdrive/c/cygwin64/usr/local/bin:$PATH"
+
 # Workaround for sshing into bash
 if [[ "$USERNAME" != "oyho" ]]
 then
@@ -11,11 +16,11 @@ then
 
   #this is so git knows its key
   ssh-add ~/.ssh/id_rsa
+else
+  NEW_PATHS=""
+  NEW_PATHS="$NEW_PATHS:$(cygpath 'C:\Python34\')"
+  export PATH="$NEW_PATHS:$PATH"
 fi
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/cygdrive/c/cygwin64/bin:$PATH"
-export PATH="/cygdrive/c/cygwin64/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/cygdrive/c/home/.oh-my-zsh
