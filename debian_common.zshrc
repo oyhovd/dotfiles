@@ -140,3 +140,4 @@ function dbg52()
 #YouCompleteMe
 export CMAKE_EXPORT_COMPILE_COMMANDS=ON
 
+export FCEDIT=nvim
