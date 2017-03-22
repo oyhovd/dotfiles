@@ -176,3 +176,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export FCEDIT=vim
+
+#override this on cygwin
+export TESTHARNESSPY="/bin/python"
