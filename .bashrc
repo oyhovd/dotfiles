@@ -13,7 +13,7 @@ fmsb52() {
   msb52 `f $@ build.xml`
 }
 
-export TESTHARNESSPY="python"o
+export TESTHARNESSPY="python"
 function remotetestharness {
   find . -name "$2" -exec $TESTHARNESSPY ~/devel/test_harness/test_harness.py test --tests {}/build.xml -m"-t:compile,test ${@:3}" --ellisys -t $1 \; -quit
   ls tmp_*.zip -t | head -1 | xargs -I {} 7z x -y {} console_output.txt captures -r

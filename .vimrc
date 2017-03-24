@@ -127,6 +127,9 @@ autocmd BufReadPost *
 
 "eclim stuff/youcompleteme ycm stuff
 "let g:ycm_auto_trigger = 0
+let g:ycm_min_num_of_chars_for_completion = 99
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 if !has('nvim')
   set nocompatible
   filetype plugin indent on
