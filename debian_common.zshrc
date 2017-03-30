@@ -89,7 +89,7 @@ source $HOME/dotfiles/.bashrc
 alias -s html=xdg-open
 
 #turn off nagging for password (turn of energy star)
-xset -dpms > /dev/null 2&>1
+xset -dpms > /dev/null 2>&1
 
 #Keil stuff
 export KEIL_PATH=/home/oyho/armstuff

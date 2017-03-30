@@ -141,7 +141,7 @@ if !has('nvim')
   imap <c-u> <c-x><c-u>
 else
   nmap <F3> :YcmCompleter 
-  let g:ycm_autoclose_preview_window_after_completion = 1
+"  let g:ycm_autoclose_preview_window_after_completion = 1
   let g:ycm_autoclose_preview_window_after_insertion = 1
 endif
 
