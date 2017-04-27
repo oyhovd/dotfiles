@@ -5,8 +5,8 @@ source $HOME/dotfiles/debian_common.zshrc
 alias mbrupdate="/home/oyho/bin/mbrupdate.sh"
 
 #ARM Compiler 5 stuff
-export PATH="/usr/local/ARM_Compiler_5.06u5/bin:$PATH"
-#export PATH="/usr/local/ARM_Compiler_5.06u4/bin:$PATH"
+#export PATH="/usr/local/ARM_Compiler_5.06u5/bin:$PATH"
+export PATH="/usr/local/ARM_Compiler_5.06u4/bin:$PATH"
 export PATH="/usr/local/gcc-arm-none-eabi-5_4-2016q3/bin/:$PATH"
 export ARMLMD_LICENSE_FILE=1714@licsrv1
 export ARM_TOOL_VARIANT=mdk_pro_flex

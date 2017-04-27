@@ -67,3 +67,11 @@ IRQ
 HW
 PCNF0
 PCNF1
+#achother
+PDU
+#reemtable
+preemptable
+_RSP
+ACKed
+NACK
+NACKing
