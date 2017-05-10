@@ -1,3 +1,5 @@
+source $HOME/dotfiles/vundle.vim
+
 "workaround for colors in neovim in tmux
 "let $TERM="xterm-256color"
 
@@ -365,3 +367,11 @@ function! FindConflict()
 endfunction
 :command! FindConflict call FindConflict()
 
+"Disable Eclim by default
+if exists(":EclimDisable")
+  autocmd VimEnter * EclimDisable
+endif
+
+if getcwd() =~ 'zephyr'
+  source ~/dotfiles/zephyr.vim
+endif
