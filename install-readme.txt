@@ -22,3 +22,8 @@ sudo apt-get install subversion ssh-pass
 #Getting https://github.com/robbyrussell/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ln -s $HOME/dotfiles/oyho.zsh-theme $HOME/.oh-my-zsh/themes/
+
+#For GDB dashboard:
+wget -P ~ git.io/.gdbinit
+(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
+

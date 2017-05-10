@@ -162,7 +162,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
 let grepexcludedirsall = '"*.git*","build*",outdir'
-let grepexcludedirs = grepexcludedirsall . ',"*test"'
+let grepexcludedirs = grepexcludedirsall . ',"*test","*deploy*"'
 let grepexcludefiles = '"objdump*","assert_table*",build.ninja'
 "nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
 "nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
