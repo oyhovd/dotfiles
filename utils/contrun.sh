@@ -2,6 +2,7 @@
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+DARKGRAY='\033[0;90m'
 NC='\033[0m' # No Color
 
 CLS='\033c'
@@ -11,29 +12,64 @@ ITERATION=0
 PASSED=1
 RETRY_NOW=1
 SLEEP_TIME=2
+SEPARATOR_OFFSET=0
+LENGTH_EXPANSION=0
 
 PLUS="+"
 MINUS="-"
 
 HELP="Press + or - to adjust sleep time, s to save last log, p to pause, q to quit, e to open last 
-log in editor, l to view with less."
+log in editor, l to view with less. m to show more text, n to show less. k to show more tail, j to show more head."
 
+#Global
+OUTPUT=""
+
+function printoutput {
+  echo -e "${DARKGRAY}Formatting result...${NC}"
+
+  SCREEN_LINES=$(tput lines)
+  SCREEN_COLS=$(tput cols)
+  MAX_CHARS=$(($SCREEN_COLS * 2))
+  MAX_SEPARATORS=$(($SCREEN_COLS / 2))
+  #MAX_LINES is: 5 reserved for "failed" and help text, 3 reserved for separator, 2 for "Running" and "Formatting...", the rest is divided by 2 since we allow 2 line lengths.
+  MAX_LINES=$(( ( ($SCREEN_LINES - 5 - 3 - 2) / 2) + ( $LENGTH_EXPANSION * 2) ))
+  HEAD_MAX_LINES=$(( ($MAX_LINES / 2) + $SEPARATOR_OFFSET ))
+  TAIL_MAX_LINES=$(( ($MAX_LINES / 2) - $SEPARATOR_OFFSET ))
+
+  #To avoid flickering, build the output in a variable and print it instead of building it on the screen.
+  HEAD=$(echo "${OUTPUT}" | head -n $HEAD_MAX_LINES | cut -c -$MAX_CHARS;)
+  TAIL=$(echo "${OUTPUT}" | tail -n $TAIL_MAX_LINES | cut -c -$MAX_CHARS;)
+  SEPARATOR=""
+  for i in `seq 1 $MAX_SEPARATORS`;
+  do
+    SEPARATOR="$SEPARATOR<>"
+  done
+
+  tput clear
+  echo "$HEAD"
+
+  tput cup $HEAD_MAX_LINES 0
+  tput ed #clear to end of screen
+  echo "" #blank line
+  tput setaf 3 #set color
+  echo "$SEPARATOR"
+  tput sgr0 #clear formatting
+  echo "" #blank line
+  echo "$TAIL"
+}
 echo -e "${CLS}Starting running of: $@"
 
 while true
 do
   ((ITERATION++))
 
-  SCREEN_LINES=$(tput lines)
+  echo -e "${DARKGRAY}Running command...${NC}"
   OUTPUT=$(nice -n20 $@ 2>&1)
 
   if [[ $? -ne 0 ]]
   then
-    echo -e "${CLS}"
-    #To avoid flickering, build the output in a variable and print it instead of building it on the screen.
-    RESULT_TO_PRINT=$(echo "${OUTPUT}" | head -n 20 | cut -c -200; echo ""; echo "<><><><><><><><><><><><><><><><><><><><><><>"; echo ""; echo "${OUTPUT}" | tail -n 20 | cut -c -200)
-    echo "${RESULT_TO_PRINT}"
-#    echo "${OUTPUT}"
+    printoutput
+
     echo "" #newline
     echo -e "${RED}Iteration $ITERATION Failed: ${NC}$@"
 
@@ -60,6 +96,7 @@ do
 
   while true
   do
+
     if [[ $RETRY_NOW -ne 0 ]]
     then
       #Sleep nothing when retrying fast.
@@ -93,6 +130,42 @@ do
         ((SLEEP_TIME--))
       fi
       echo -e "${CLS}Sleeping $SLEEP_TIME seconds"
+      echo ""
+      echo $HELP
+      continue
+    fi
+    if [[ $key = j ]]
+    then
+      ((SEPARATOR_OFFSET++))
+      echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
+      #printoutput
+      echo ""
+      echo $HELP
+      continue
+    fi
+    if [[ $key = k ]]
+    then
+      ((SEPARATOR_OFFSET--))
+      echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
+      #printoutput
+      echo ""
+      echo $HELP
+      continue
+    fi
+    if [[ $key = m ]]
+    then
+      ((LENGTH_EXPANSION++))
+      echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
+      #printoutput
+      echo ""
+      echo $HELP
+      continue
+    fi
+    if [[ $key = n ]]
+    then
+      ((LENGTH_EXPANSION--))
+      echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
+      #printoutput
       echo ""
       echo $HELP
       continue
