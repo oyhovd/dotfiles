@@ -87,8 +87,8 @@ autocmd BufWritePre * :mks! ~/.vim/autosave
 "highlighting
 highlight WhitespaceEOL ctermbg=darkred guibg=darkred
 highlight Tabs ctermbg=blue guibg=blue
-au BufNewFile,BufRead * match WhitespaceEOL /\s\+$/
-au BufNewFile,BufRead * 2match Tabs /\t\+/
+au BufEnter * match WhitespaceEOL /\s\+$/
+au BufEnter * 2match Tabs /\t\+/
 
 "sed swpfile dir
 :set directory=$HOME/.vim/swapfiles//
@@ -143,6 +143,8 @@ if !has('nvim')
   imap <c-u> <c-x><c-u>
 else
   nmap <F3> :YcmCompleter 
+  nmap <F4> :YcmCompleter GoToDefinition<CR>
+  nmap <F5> :YcmCompleter GoToDeclaration<CR>
 "  let g:ycm_autoclose_preview_window_after_completion = 1
   let g:ycm_autoclose_preview_window_after_insertion = 1
 endif
