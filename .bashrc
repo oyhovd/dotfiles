@@ -21,7 +21,7 @@ function remotetestharness {
 # python ~/devel/test_harness/test_harness.py test --tests ./nrfsoc/test/tp_rob_rem_003/build.xml -m"-t:compile,test " --ellisys -c -t rf-test
 
 function vikartest {
-  remotetestharness vikar1 $1 ${@:2}
+  remotetestharness vikar1.nvlsi.no $1 ${@:2}
 }
 
 function vikartest52 {
@@ -33,7 +33,7 @@ function vikartest51 {
 }
 
 function rftest {
-  remotetestharness rf-test $1 ${@:2}
+  remotetestharness rf-test.nvlsi.no $1 ${@:2}
 }
 
 function rftest52 {
