@@ -6,5 +6,5 @@ noremap <C-z> :undo<CR>
 
 " navigate tabs
 nnoremap <S-Tab> :tabprevious<CR>
-nnoremap <Tab> :tabnext<CR>
+nnoremap <C-Tab> :tabnext<CR>
 
