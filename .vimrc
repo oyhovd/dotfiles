@@ -82,7 +82,7 @@ au BufNewFile,BufRead *EDITMSG   call SpellOnOff()
 set complete+=kspell
 
 "save session in case of instability...
-autocmd BufWritePre * :mks! ~/.vim/autosave
+"autocmd BufWritePre * :mks! ~/.vim/autosave
 
 "highlighting
 highlight WhitespaceEOL ctermbg=darkred guibg=darkred
@@ -166,11 +166,13 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
 let grepexcludedirsall = '"*.git*","build*",outdir'
+let grepexcludedirstest = grepexcludedirsall . ',"*deploy*"'
 let grepexcludedirs = grepexcludedirsall . ',"*test","*deploy*"'
 let grepexcludefiles = '"objdump*","assert_table*",build.ninja'
 "nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
 "nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
 nmap <Leader>fa :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirsall<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
+nmap <Leader>ft :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirstest<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
 nmap <Leader>ff :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
 nmap <Leader>f/ :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "<c-r>/"<CR>
 

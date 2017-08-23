@@ -1,13 +1,7 @@
 "removing tmux from dispatch handlers as win ninja doesn't work. dispatch-neovim should override
 "this again.
 if !has('nvim')
-  let g:dispatch_handlers = [
-      \ 'screen',
-      \ 'windows',
-      \ 'iterm',
-      \ 'x11',
-      \ 'headless',
-      \ ]
+  let g:dispatch_handlers = [ 'screen', 'windows', 'iterm', 'x11', 'headless', ]
 endif
 
 set nocompatible              " be iMproved, required
