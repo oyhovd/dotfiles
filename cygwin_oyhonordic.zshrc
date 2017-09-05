@@ -179,3 +179,6 @@ export FCEDIT=vim
 
 #override this on cygwin
 export TESTHARNESSPY="/bin/python"
+
+#cygwin python
+alias cygpy="/cygdrive/c/cygwin64/bin/python"

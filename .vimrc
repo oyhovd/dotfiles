@@ -168,10 +168,10 @@ nmap <Leader>bn :NERDTree<CR>
 "grepping
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
-let grepexcludedirsall = '"*.git*","build*",outdir'
+let grepexcludedirsall = '"*.git*","build*",outdir,CMakeFiles'
 let grepexcludedirstest = grepexcludedirsall . ',"*deploy*"'
 let grepexcludedirs = grepexcludedirsall . ',"*test","*deploy*"'
-let grepexcludefiles = '"objdump*","assert_table*",build.ninja'
+let grepexcludefiles = '"objdump*","assert_table*","*.ninja*","*.elf.map"'
 "nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
 "nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
 nmap <Leader>fa :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirsall<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
