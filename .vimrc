@@ -162,6 +162,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 "nmap <c-g> :CtrlPBuffer<CR>
 
+"NERDTree stuff
+nmap <Leader>bn :NERDTree<CR>
+
 "grepping
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
