@@ -191,118 +191,118 @@ endfunc
 nnoremap <Leader>1 :call NumberToggle()<cr>
 
 "GDB setup
-"default: 50 is too slow (races, inconsistencies in vim tui buffer?
-let g:ConqueGdb_ReadTimeout = 100
-let g:ConqueGdb_SrcSplit = 'left'
-
-function! NrfjprogHalt()
-  if !exists('g:NrfjprogFamily')
-    let g:NrfjprogFamily = "nrf52"
-  endif
-
-  if !exists('g:NrfjprogSerial')
-    let g:NrfjprogSerial = "$OYHO_NRF52_DEV_KIT"
-  endif
-
-  exe "!nrfjprog --halt --family " . g:NrfjprogFamily . " --snr " . g:NrfjprogSerial
-  "force update of tui buffer
-  redraw!
-  ConqueGdbCommand pwd
-endfunction
-
-function! GdbBreakTemp()
-  call conque_gdb#command("tbreak " . expand("%") . ":" . line("."))
-endfunction
-
-"Starts ARM GDB with JLink server
-function! GdbJlink()
-  "run (continue)
-  nmap <F5> :ConqueGdbCommand c<CR>
-  imap <F5> <Esc><F5>
-  "reset
-  nmap <C-F5> :ConqueGdbCommand monitor reset<CR>
-  imap <C-F5> <Esc><C-F5>
-  "halt
-  nmap <F6> :call NrfjprogHalt()<CR><CR>
-  imap <F6> <Esc><F6>
-  "add temporary breakpoint (for "run to line")
-  nmap <F9> :call GdbBreakTemp()<CR>
-  imap <F9> <Esc><F9>
-  "step
-"  nmap <F11> :ConqueGdbCommand monitor step<CR>
-  nmap <F11> :ConqueGdbCommand step<CR>
-  imap <F11> <Esc><F11>
-  "step out of
-  nmap <C-F10> :ConqueGdbCommand finish<CR>
-  imap <C-F10> <Esc><C-F10>
-  "step machine instruction
-  nmap <S-F10> :ConqueGdbCommand stepi<CR>
-  imap <S-F10> <Esc><S-F10>
-  "Shortcut to add any gdb command
-  nmap <F12> :ConqueGdbCommand 
-  imap <F12> <Esc><F12>
-
-  "open GDB and set up with Jlink server. This uses py version, standard works as well
-  ConqueGdbExe ~/bin/gnutools/bin/arm-none-eabi-gdb-py.exe
-  ConqueGdb
-  ConqueGdbCommand target remote localhost:2331
-  ConqueGdbCommand monitor clrbp
-  ConqueGdbCommand monitor reset
-  "exit insert mode in gdb tui buffer
-  stopinsert
-endfunction
-command! GdbJlink call GdbJlink()
-
-"Starts GDB (GCC)
-function! GdbGcc()
-  "run (continue)
-  nmap <F5> :ConqueGdbCommand c<CR>
-  imap <F5> <Esc><F5>
-  "reset
-  nmap <C-F5> :ConqueGdbCommand run<CR>
-  imap <C-F5> <Esc><C-F5>
-  "halt
-  nmap <F6> :call NrfjprogHalt()<CR><CR>
-  imap <F6> <Esc><F6>
-  "add temporary breakpoint (for "run to line")
-  nmap <F9> :call GdbBreakTemp()<CR>
-  imap <F9> <Esc><F9>
-  "step (shift version also where F11 means full screen
-  nmap <S-F11> :ConqueGdbCommand step<CR>
-  imap <S-F11> <Esc><S-F11>
-  nmap <F11> :ConqueGdbCommand step<CR>
-  imap <F11> <Esc><F11>
-"  nmap <F11> :ConqueGdbCommand monitor step<CR>
-  nmap <F10> :ConqueGdbCommand next<CR>
-  imap <F10> <Esc><F10>
-  "step out of
-  nmap <C-F10> :ConqueGdbCommand finish<CR>
-  imap <C-F10> <Esc><C-F10>
-  "step machine instruction
-  nmap <S-F10> :ConqueGdbCommand stepi<CR>
-  imap <S-F10> <Esc><S-F10>
-  "Shortcut to add any gdb command
-  nmap <F12> :ConqueGdbCommand 
-  imap <F12> <Esc><F12>
-
-  "open GDB and set up with Jlink server. This uses py version, standard works as well
-  "ConqueGdbExe /cygdrive/c/cygwin32/bin/gdb
-  ConqueGdb
-endfunction
-command! GdbGcc call GdbGcc()
-
-
-"open JLink server
-function! GdbJlinkServer()
-  exe '!/cygdrive/c/Program\ Files\ \(x86\)/SEGGER/JLink_V510n/JLinkGDBServer.exe -select USB -device nRF52832_xxAA -if SWD -speed 1000 -noir &'
-endfunction
-command! GdbJlinkServer call GdbJlinkServer()
-
-"kill JLink server
-function! GdbJlinkServerKill()
-  exe '!taskkill -f -im JLinkGDBServer.exe'
-endfunction
-command! GdbJlinkServerKill call GdbJlinkServerKill()
+""default: 50 is too slow (races, inconsistencies in vim tui buffer?
+"let g:ConqueGdb_ReadTimeout = 100
+"let g:ConqueGdb_SrcSplit = 'left'
+"
+"function! NrfjprogHalt()
+"  if !exists('g:NrfjprogFamily')
+"    let g:NrfjprogFamily = "nrf52"
+"  endif
+"
+"  if !exists('g:NrfjprogSerial')
+"    let g:NrfjprogSerial = "$OYHO_NRF52_DEV_KIT"
+"  endif
+"
+"  exe "!nrfjprog --halt --family " . g:NrfjprogFamily . " --snr " . g:NrfjprogSerial
+"  "force update of tui buffer
+"  redraw!
+"  ConqueGdbCommand pwd
+"endfunction
+"
+"function! GdbBreakTemp()
+"  call conque_gdb#command("tbreak " . expand("%") . ":" . line("."))
+"endfunction
+"
+""Starts ARM GDB with JLink server
+"function! GdbJlink()
+"  "run (continue)
+"  nmap <F5> :ConqueGdbCommand c<CR>
+"  imap <F5> <Esc><F5>
+"  "reset
+"  nmap <C-F5> :ConqueGdbCommand monitor reset<CR>
+"  imap <C-F5> <Esc><C-F5>
+"  "halt
+"  nmap <F6> :call NrfjprogHalt()<CR><CR>
+"  imap <F6> <Esc><F6>
+"  "add temporary breakpoint (for "run to line")
+"  nmap <F9> :call GdbBreakTemp()<CR>
+"  imap <F9> <Esc><F9>
+"  "step
+""  nmap <F11> :ConqueGdbCommand monitor step<CR>
+"  nmap <F11> :ConqueGdbCommand step<CR>
+"  imap <F11> <Esc><F11>
+"  "step out of
+"  nmap <C-F10> :ConqueGdbCommand finish<CR>
+"  imap <C-F10> <Esc><C-F10>
+"  "step machine instruction
+"  nmap <S-F10> :ConqueGdbCommand stepi<CR>
+"  imap <S-F10> <Esc><S-F10>
+"  "Shortcut to add any gdb command
+"  nmap <F12> :ConqueGdbCommand 
+"  imap <F12> <Esc><F12>
+"
+"  "open GDB and set up with Jlink server. This uses py version, standard works as well
+"  ConqueGdbExe ~/bin/gnutools/bin/arm-none-eabi-gdb-py.exe
+"  ConqueGdb
+"  ConqueGdbCommand target remote localhost:2331
+"  ConqueGdbCommand monitor clrbp
+"  ConqueGdbCommand monitor reset
+"  "exit insert mode in gdb tui buffer
+"  stopinsert
+"endfunction
+"command! GdbJlink call GdbJlink()
+"
+""Starts GDB (GCC)
+"function! GdbGcc()
+"  "run (continue)
+"  nmap <F5> :ConqueGdbCommand c<CR>
+"  imap <F5> <Esc><F5>
+"  "reset
+"  nmap <C-F5> :ConqueGdbCommand run<CR>
+"  imap <C-F5> <Esc><C-F5>
+"  "halt
+"  nmap <F6> :call NrfjprogHalt()<CR><CR>
+"  imap <F6> <Esc><F6>
+"  "add temporary breakpoint (for "run to line")
+"  nmap <F9> :call GdbBreakTemp()<CR>
+"  imap <F9> <Esc><F9>
+"  "step (shift version also where F11 means full screen
+"  nmap <S-F11> :ConqueGdbCommand step<CR>
+"  imap <S-F11> <Esc><S-F11>
+"  nmap <F11> :ConqueGdbCommand step<CR>
+"  imap <F11> <Esc><F11>
+""  nmap <F11> :ConqueGdbCommand monitor step<CR>
+"  nmap <F10> :ConqueGdbCommand next<CR>
+"  imap <F10> <Esc><F10>
+"  "step out of
+"  nmap <C-F10> :ConqueGdbCommand finish<CR>
+"  imap <C-F10> <Esc><C-F10>
+"  "step machine instruction
+"  nmap <S-F10> :ConqueGdbCommand stepi<CR>
+"  imap <S-F10> <Esc><S-F10>
+"  "Shortcut to add any gdb command
+"  nmap <F12> :ConqueGdbCommand 
+"  imap <F12> <Esc><F12>
+"
+"  "open GDB and set up with Jlink server. This uses py version, standard works as well
+"  "ConqueGdbExe /cygdrive/c/cygwin32/bin/gdb
+"  ConqueGdb
+"endfunction
+"command! GdbGcc call GdbGcc()
+"
+"
+""open JLink server
+"function! GdbJlinkServer()
+"  exe '!/cygdrive/c/Program\ Files\ \(x86\)/SEGGER/JLink_V510n/JLinkGDBServer.exe -select USB -device nRF52832_xxAA -if SWD -speed 1000 -noir &'
+"endfunction
+"command! GdbJlinkServer call GdbJlinkServer()
+"
+""kill JLink server
+"function! GdbJlinkServerKill()
+"  exe '!taskkill -f -im JLinkGDBServer.exe'
+"endfunction
+"command! GdbJlinkServerKill call GdbJlinkServerKill()
 
 "commenting
 "put comment string into c register
@@ -330,37 +330,37 @@ nmap <bar> :normal _<c-r>=g:CommentStringLength<CR>x<CR>+
 vmap \ :call InsertCommentString()<CR>
 vmap <bar> :normal _<c-r>=g:CommentStringLength<CR>x<CR>+
 
-"GPIO debugging
-function! PinDebug()
-  normal o
-  normal o#ifndef PIN_DEBUG_ENABLE
-  normal o#define PIN_DEBUG_ENABLE
-  normal o#endif
-  normal o#include "pin_debug_transport.h"
-  normal o
-endfunction
-:command! PinDebug call PinDebug()
-
-function! PinDebugInit()
-  normal oDBP_PORTA_ENABLE;
-endfunction
-:command! PinDebugInit call PinDebugInit()
-
-function! SpiDebug()
-  "blank line below DEBUG_SPI_END
-  normal o
-  normal O/***********DEBUG_SPI_END***************/
-  normal -
-  r~/devel/debug-tools/debug_spi.c
-  normal -
-  call PinDebug()
-endfunction
-:command! SpiDebug call SpiDebug()
-
-function! SpiDebugInit()
-  normal odebug_spi_config(DBP6, DBP7);
-endfunction
-:command! SpiDebugInit call SpiDebugInit()
+""GPIO debugging
+"function! PinDebug()
+"  normal o
+"  normal o#ifndef PIN_DEBUG_ENABLE
+"  normal o#define PIN_DEBUG_ENABLE
+"  normal o#endif
+"  normal o#include "pin_debug_transport.h"
+"  normal o
+"endfunction
+":command! PinDebug call PinDebug()
+"
+"function! PinDebugInit()
+"  normal oDBP_PORTA_ENABLE;
+"endfunction
+":command! PinDebugInit call PinDebugInit()
+"
+"function! SpiDebug()
+"  "blank line below DEBUG_SPI_END
+"  normal o
+"  normal O/***********DEBUG_SPI_END***************/
+"  normal -
+"  r~/devel/debug-tools/debug_spi.c
+"  normal -
+"  call PinDebug()
+"endfunction
+":command! SpiDebug call SpiDebug()
+"
+"function! SpiDebugInit()
+"  normal odebug_spi_config(DBP6, DBP7);
+"endfunction
+":command! SpiDebugInit call SpiDebugInit()
 
 "quickfix window height
 au FileType qf call AdjustWindowHeight(3, 20)
