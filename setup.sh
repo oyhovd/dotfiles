@@ -26,3 +26,5 @@ ln -s $HOME/dotfiles/utils/* $HOME/bin/
 
 #git setup
 git config --global core.excludesfile $HOME/dotfiles/gitignore_global
+
+sudo apt-get install terminator
