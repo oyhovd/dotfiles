@@ -3,7 +3,7 @@
 #git clone https://github.com/oyhovd/dotfiles.git
 
 cd $HOME
-sudo apt-get install zsh vim ctags
+sudo apt-get install zsh vim ctags curl
 
 #zsh setup
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
