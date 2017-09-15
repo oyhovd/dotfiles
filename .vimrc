@@ -168,6 +168,11 @@ nmap <Leader>bn :NERDTree<CR>
 "TagBar stuff
 nmap <Leader>bta :TagbarToggle<CR>
 
+"ctags and vim-tags stuff
+"autogenerate only on write
+let g:vim_tags_auto_generate = 0
+au BufWritePost * :TagsGenerate!
+
 "grepping
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
