@@ -49,7 +49,7 @@ if !has("win32unix")
 endif
 Plugin 'szw/vim-tags'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/AutoComplPop'
+"Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'dodie/vim-disapprove-deep-indentation'
 "sudo apt-get install ttf-unifont to show the character
 "if has('nvim')
