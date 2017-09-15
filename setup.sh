@@ -17,8 +17,8 @@ ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 #Run PluginInstall in vim
-vim +PluginClean +qall
 vim +PluginInstall +qall
+vim +PluginClean +qall
 
 #utils
 mkdir -p $HOME/bin
