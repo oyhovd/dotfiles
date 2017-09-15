@@ -44,12 +44,15 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+if !has("win32unix")
+  Plugin 'Xuyuanp/nerdtree-git-plugin'
+endif
+Plugin 'majutsushi/tagbar'
 "Plugin 'dodie/vim-disapprove-deep-indentation'
 "sudo apt-get install ttf-unifont to show the character
-if has('nvim')
-  Plugin 'Valloric/YouCompleteMe'
-endif
+"if has('nvim')
+"  Plugin 'Valloric/YouCompleteMe'
+"endif
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required

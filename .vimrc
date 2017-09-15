@@ -165,6 +165,9 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "NERDTree stuff
 nmap <Leader>bn :NERDTree<CR>
 
+"TagBar stuff
+nmap <Leader>bta :TagbarToggle<CR>
+
 "grepping
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
