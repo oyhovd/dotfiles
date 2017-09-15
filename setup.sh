@@ -9,7 +9,7 @@ sudo apt-get install zsh vim ctags
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ln -s $HOME/dotfiles/oyho.zsh-theme $HOME/.oh-my-zsh/themes/
 mv $HOME/.zshrc $HOME/.zshrc_old
-ln -s /Users/hovdsveen/dotfiles/debian_common.zshrc $HOME/.zshrc
+ln -s $HOME/dotfiles/debian_common.zshrc $HOME/.zshrc
 
 #vim setup
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
