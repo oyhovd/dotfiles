@@ -27,4 +27,12 @@ ln -s $HOME/dotfiles/utils/* $HOME/bin/
 #git setup
 git config --global core.excludesfile $HOME/dotfiles/gitignore_global
 
-sudo apt-get install terminator
+
+#For GDB dashboard:
+wget -P ~ git.io/.gdbinit
+#(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
+
+
+#other installs
+sudo apt-get install terminator python-dev python-pip python3-dev python3-pip
+pip install thefuck
