@@ -4,7 +4,7 @@
 
 cd $HOME
 #install dependencies necessary for the installers in this file
-sudo apt-get install zsh vim ctags curl
+sudo apt-get -y install zsh vim ctags curl
 
 #zsh setup
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -34,5 +34,5 @@ wget -P ~ git.io/.gdbinit
 
 
 #other installs
-sudo apt-get install terminator python-dev python-pip python3-dev python3-pip
+sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip
 pip install thefuck
