@@ -79,7 +79,7 @@ cd dotfiles
 last_invalid
 find .config -type d -exec mkdir -p {} $HOME/{} \;
 last_invalid
-for file in find .config -type f; do
+for file in `find .config -type f`; do
   ln -s $file $HOME/$file
   last_invalid
 done
