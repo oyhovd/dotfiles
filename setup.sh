@@ -2,7 +2,8 @@
 #adduser oyho sudo
 #git clone https://github.com/oyhovd/dotfiles.git
 
-last_invalid() {
+last_invalid()
+{
   if [ $? -ne 0 ]; then
     echo "Last command failed. Press ENTER to continue or Ctrl-C to quit."
   fi
