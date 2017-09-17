@@ -72,6 +72,15 @@ last_invalid
 pip install matplotlib
 last_invalid
 
+#copy all config files
+#first create all folders
+cd dotfiles
+last_invalid
+find .config -type d -exec mkdir -p {} $HOME/{} \;
+last_invalid
+find .config -type f -exec ln -s {} $HOME/{} \;
+cd ..
+
 #cleanup
 sudo apt-get clean
 last_invalid
