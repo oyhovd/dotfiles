@@ -20,7 +20,7 @@ sudo apt-get -y install zsh vim ctags curl
 last_invalid
 
 #zsh and oh-my-zsh setup if not already done
-if ! [ -f "$HOME/.oh-my-zsh" ]; then
+if ! [ -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   last_invalid
   ln -s $HOME/dotfiles/oyho.zsh-theme $HOME/.oh-my-zsh/themes/
@@ -32,7 +32,7 @@ if ! [ -f "$HOME/.oh-my-zsh" ]; then
 fi
 
 #vim setup
-if ! [ -f "$HOME/.vim/bundle/Vundle.vim" ]; then
+if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   last_invalid
   ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
