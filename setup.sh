@@ -56,7 +56,8 @@ last_invalid
 #git setup
 git config --global core.excludesfile $HOME/dotfiles/gitignore_global
 last_invalid
-
+git config --global core.editor "vim"
+last_invalid
 
 #For GDB dashboard:
 wget -P ~ git.io/.gdbinit
