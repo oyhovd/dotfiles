@@ -51,7 +51,7 @@ last_invalid
 mkdir -p $HOME/bin
 last_invalid
 ln -s $HOME/dotfiles/utils/* $HOME/bin/
-#last_invalid
+last_invalid
 
 #git setup
 git config --global core.excludesfile $HOME/dotfiles/gitignore_global
