@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #su
 #adduser oyho sudo
 #git clone https://github.com/oyhovd/dotfiles.git
@@ -6,7 +8,7 @@ last_invalid()
 {
   if [ $? -ne 0 ]; then
     echo "Last command failed. Press ENTER to continue or Ctrl-C to quit."
-    read
+    read DUMMY
   fi
 }
 
