@@ -79,7 +79,10 @@ cd dotfiles
 last_invalid
 find .config -type d -exec mkdir -p {} $HOME/{} \;
 last_invalid
-find .config -type f -exec ln -s {} $HOME/{} \;
+for file in 'find .config -type f'; do
+  ln -s $file $HOME/$file
+  last_invalid
+done
 cd ..
 
 #cleanup
