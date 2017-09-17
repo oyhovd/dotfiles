@@ -101,7 +101,7 @@ export CMSIS_PATH=/home/oyho/armstuff/ARM/Pack/ARM/CMSIS/4.1.0/CMSIS
 export ZEPHYR_BASE="$HOME/devel/zephyr"
 export ZEPHYR_SDK_INSTALL_DIR="$HOME/opt/zephyr-sdk"
 export ZEPHYR_GCC_VARIANT=zephyr
-source $HOME/devel/zephyr/zephyr-env.sh
+source $HOME/devel/zephyr/zephyr-env.sh > /dev/null 2>&1
 
 function cpatch()                                                              
 {                                                                              
