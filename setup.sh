@@ -35,6 +35,8 @@ fi
 if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   last_invalid
+  ln -s $HOME/dotfiles/.ctags $HOME/.ctags
+  last_invalid
   ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
   last_invalid
   mkdir -p $HOME/.vim/swapfiles
