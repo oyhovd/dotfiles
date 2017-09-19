@@ -1,4 +1,7 @@
 #!/bin/sh
+if [ $1 ]; then
+  touch tags
+fi
 
 if [ -f "tags" ]; then
   TEMPTAGS=`mktemp tags.XXXXXX`

@@ -169,7 +169,13 @@ nmap <Leader>bn :NERDTree<CR>
 nmap <Leader>bta :TagbarToggle<CR>
 
 "ctags
-"au BufWritePost * silent! !sh $HOME/dotfiles/utils/tagsupdate.sh &
+let g:tagsupdate = 0
+function! DoTagsUpdateIfSet()
+  if g:tagsupdate > 0
+    silent! !sh $HOME/dotfiles/utils/tagsupdate.sh force &
+  endif
+endfunction
+au BufWritePost * call DoTagsUpdateIfSet()
 
 "grepping
 "get rid of the /dev/null
