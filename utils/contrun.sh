@@ -138,7 +138,7 @@ do
     then
       ((SEPARATOR_OFFSET++))
       echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
-      #printoutput
+      printoutput
       echo ""
       echo $HELP
       continue
@@ -147,7 +147,7 @@ do
     then
       ((SEPARATOR_OFFSET--))
       echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
-      #printoutput
+      printoutput
       echo ""
       echo $HELP
       continue
@@ -156,7 +156,7 @@ do
     then
       ((LENGTH_EXPANSION++))
       echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
-      #printoutput
+      printoutput
       echo ""
       echo $HELP
       continue
@@ -165,7 +165,7 @@ do
     then
       ((LENGTH_EXPANSION--))
       echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
-      #printoutput
+      printoutput
       echo ""
       echo $HELP
       continue
