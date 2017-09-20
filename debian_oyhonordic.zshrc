@@ -20,3 +20,5 @@ alias jira="temp=/home/oyho/devel/jira_cmd python3 ~/devel/jira_cmd/jira.py"
 export CTEST_OUTPUT_ON_FAILURE=1                     # You don't have to set --output-on-failure everytime you call ctest.
 export CMOCKA_MESSAGE_OUTPUT=STDOUT #|SUBUNIT|TAP|XML  # Determines the output format of cmocka.
 export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report into the file test-report.xml
+
+export PATH="$PATH:$HOME/.local/bin"
