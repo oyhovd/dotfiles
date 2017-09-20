@@ -8,6 +8,8 @@ if [ -f "tags" ]; then
   #find . -mmin +1 -name "tags.*" -exec rm {} +
   #Not sure why we need to sleep, but seems like ctags is not done with the file
   #when it returns
+  #c-kinds=+p to list prototypes
+  #ctags -R --c-kinds=+p -f $TEMPTAGS .
   ctags -R -f $TEMPTAGS .
   sleep 1
   mv -f $TEMPTAGS tags
