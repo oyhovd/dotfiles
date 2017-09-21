@@ -165,9 +165,6 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "NERDTree stuff
 nmap <Leader>bn :NERDTree<CR>
 
-"TagBar stuff
-nmap <Leader>bta :TagbarToggle<CR>
-
 "ctags
 let g:tagsupdate = 0
 function! DoTagsUpdateIfSet()
@@ -176,6 +173,10 @@ function! DoTagsUpdateIfSet()
   endif
 endfunction
 au BufWritePost * call DoTagsUpdateIfSet()
+
+"TagBar stuff
+"also enable tags updating by opening the tagbar window this way
+nmap <Leader>bta :TagbarToggle<CR>:let g:tagsupdate=1<CR>:let g:tagsupdate<CR>
 
 "grepping
 "get rid of the /dev/null

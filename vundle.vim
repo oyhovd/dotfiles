@@ -48,6 +48,7 @@ if !has("win32unix")
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 endif
 Plugin 'majutsushi/tagbar'
+Plugin 'davidhalter/jedi-vim'
 "sudo apt-get install ttf-unifont to show the character
 "if has('nvim')
 "  Plugin 'Valloric/YouCompleteMe'

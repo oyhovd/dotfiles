@@ -68,7 +68,7 @@ last_invalid
 
 
 #other installs
-sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip
+sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip vim-python-jedi
 last_invalid
 sudo pip3 install thefuck
 last_invalid
