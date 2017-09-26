@@ -62,7 +62,7 @@ for file in `find bin -type f`; do
   #if link exists and is correct, just skip it.
   EXISTING_LINK=$(readlink $HOME/$file)
   TARGET="$HOME/dotfiles/$file"
-  if [ "$EXISTING_LINK" == "$TARGET" ]; then
+  if [ "$EXISTING_LINK" = "$TARGET" ]; then
     continue
   fi
   ln -s $HOME/dotfiles/$file $HOME/$file
@@ -108,7 +108,7 @@ for file in `find .config -type f`; do
   #if link exists and is correct, just skip it.
   EXISTING_LINK=$(readlink $HOME/$file)
   TARGET="$HOME/dotfiles/$file"
-  if [ "$EXISTING_LINK" == "$TARGET" ]; then
+  if [ "$EXISTING_LINK" = "$TARGET" ]; then
     continue
   fi
   ln -s $HOME/dotfiles/$file $HOME/$file
