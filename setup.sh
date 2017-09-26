@@ -62,9 +62,11 @@ git config --global core.editor "vim"
 last_invalid
 
 #For GDB dashboard:
-wget -P ~ git.io/.gdbinit
-#(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
-last_invalid
+if ! [ -f "$HOME/.gdbinit" ]; then
+  wget -P ~ git.io/.gdbinit
+  #(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
+  last_invalid
+fi
 
 
 #other installs
