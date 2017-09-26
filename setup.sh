@@ -12,12 +12,18 @@ last_invalid()
   fi
 }
 
-cd $HOME
+exists()
+{
+  command -v $1 >/dev/null 2>&1
+}
+
 last_invalid
 
 #install dependencies necessary for the installers in this file
-sudo apt-get -y install zsh vim ctags curl
-last_invalid
+if exists apt-get; then
+  sudo apt-get -y install zsh vim ctags curl
+  last_invalid
+fi
 
 #zsh and oh-my-zsh setup if not already done
 if ! [ -d "$HOME/.oh-my-zsh" ]; then
@@ -52,8 +58,16 @@ last_invalid
 #utils
 mkdir -p $HOME/bin
 last_invalid
-ln -s $HOME/dotfiles/utils/* $HOME/bin/
-last_invalid
+for file in `find bin -type f`; do
+  #if link exists and is correct, just skip it.
+  EXISTING_LINK=$(readlink $HOME/$file)
+  TARGET="$HOME/dotfiles/$file"
+  if [ "$EXISTING_LINK" == "$TARGET" ]; then
+    continue
+  fi
+  ln -s $HOME/dotfiles/$file $HOME/$file
+  last_invalid
+done
 
 #git setup
 git config --global core.excludesfile $HOME/dotfiles/gitignore_global
@@ -63,35 +77,49 @@ last_invalid
 
 #For GDB dashboard:
 if ! [ -f "$HOME/.gdbinit" ]; then
-  wget -P ~ git.io/.gdbinit
-  #(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
+  if exists wget; then
+    wget -P ~ git.io/.gdbinit
+    #(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
+    last_invalid
+  fi
+fi
+
+#other installs
+if exists apt-get; then
+  sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip vim-python-jedi
   last_invalid
 fi
 
+if exists pip3; then
+  sudo pip3 install thefuck
+  last_invalid
+fi
 
-#other installs
-sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip vim-python-jedi
-last_invalid
-sudo pip3 install thefuck
-last_invalid
-pip install matplotlib
-last_invalid
+if exists pip; then
+  pip install matplotlib
+  last_invalid
+fi
 
 #copy all config files
 #first create all folders
-cd dotfiles
-last_invalid
 find .config -type d -exec mkdir -p {} $HOME/{} \;
 last_invalid
 for file in `find .config -type f`; do
+  #if link exists and is correct, just skip it.
+  EXISTING_LINK=$(readlink $HOME/$file)
+  TARGET="$HOME/dotfiles/$file"
+  if [ "$EXISTING_LINK" == "$TARGET" ]; then
+    continue
+  fi
   ln -s $HOME/dotfiles/$file $HOME/$file
   last_invalid
 done
-cd ..
 
 #cleanup
-sudo apt-get clean
-last_invalid
+if exists apt-get; then
+  sudo apt-get clean
+  last_invalid
+fi
 
 echo "Setup done"
 
