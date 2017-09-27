@@ -50,7 +50,7 @@ CASE_SENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 # git: git stuff
 # history-substring-search: type characters and press up arrow
-plugins=(git history-substring-search thefuck globalias)
+plugins=(git history-substring-search thefuck expand-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,18 +85,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Extra plugin configs
 
-# Swapping globalias hotkeys
-# space expands all aliases, including global
-bindkey -M emacs " " magic-space
-bindkey -M viins " " magic-space
-
-# control-space to make a normal space
-bindkey -M emacs "^ " globalias
-bindkey -M viins "^ " globalias
-
-#source $HOME/dotfiles/.oh-my-zsh-custom/plugins/expand-aliases/expand-aliases.plugin.zsh
-
-
+#source $HOME/dotfiles/.oh-my-zsh/plugins/expand-aliases/expand-aliases.plugin.zsh
 source $HOME/dotfiles/.bashrc
 
 #Open html files in default app

@@ -30,7 +30,7 @@ export ZSH=/cygdrive/c/home/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="blinks"
-ZSH_THEME="oyho"
+ZSH_THEME="oyho-cygwin"
 #ZSH_THEME="oyho-remote"
 #ZSH_THEME="crunch"
 
@@ -79,7 +79,7 @@ ZSH_THEME="oyho"
 # git: git stuff
 # history-substring-search: type characters and press up arrow
 #
-plugins=(git history-substring-search globalias)
+plugins=(git history-substring-search expand-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -142,16 +142,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Extra plugin configs
 
-# Swapping globalias hotkeys
-# space expands all aliases, including global
-bindkey -M emacs " " magic-space
-bindkey -M viins " " magic-space
-
-# control-space to make a normal space
-bindkey -M emacs "^ " globalias
-bindkey -M viins "^ " globalias
-
-#source $HOME/dotfiles/.oh-my-zsh-custom/plugins/expand-aliases/expand-aliases.plugin.zsh
+#source $HOME/dotfiles/.oh-my-zsh/plugins/expand-aliases/expand-aliases.plugin.zsh
 
 #common stash
 source ~/dotfiles/.bashrc
