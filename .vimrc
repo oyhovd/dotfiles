@@ -169,7 +169,7 @@ nmap <Leader>bn :NERDTree<CR>
 let g:tagsupdate = 0
 function! DoTagsUpdateIfSet()
   if g:tagsupdate > 0
-    silent! !sh $HOME/dotfiles/utils/tagsupdate.sh force > /dev/null 2>&1 &
+    silent! !sh $HOME/dotfiles/bin/tagsupdate.sh force > /dev/null 2>&1 &
   endif
 endfunction
 au BufWritePost * call DoTagsUpdateIfSet()
