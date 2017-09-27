@@ -35,7 +35,6 @@ function rftest51 {
 alias cfind="/c/cygwin64/bin/find"
 alias gitbash="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Git/bin/sh.exe --login -l"
 alias gitbrancha="git branch -a"
-alias gs="git status"
 alias gdc="git diff --cached"
 alias gl="git log --graph --decorate"
 alias glogallnames="git for-each-ref --sort=-committerdate  --format='%(committername) %(committerdate)   %(refname)' refs/remotes/origin"
