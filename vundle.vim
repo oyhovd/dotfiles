@@ -50,8 +50,8 @@ endif
 Plugin 'majutsushi/tagbar'
 if has('nvim') || (has('python') && has('python3'))
   Plugin 'davidhalter/jedi-vim'
+  Plugin 'severin-lemaignan/vim-minimap'
 endif
-Plugin 'severin-lemaignan/vim-minimap'
 "sudo apt-get install ttf-unifont to show the character
 "if has('nvim')
 "  Plugin 'Valloric/YouCompleteMe'
