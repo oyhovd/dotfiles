@@ -382,6 +382,9 @@ function! AdjustWindowHeight(minheight, maxheight)
   "exe max([min([a:maxheight, a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
 
+"minimap stuff
+let g:minimap_highlight='Visual'
+
 function! FindConflict()
   normal /\(=======\|<<<<<<<\|>>>>>>>\)
 endfunction
