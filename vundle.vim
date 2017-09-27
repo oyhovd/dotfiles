@@ -48,7 +48,7 @@ if !has("win32unix")
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 endif
 Plugin 'majutsushi/tagbar'
-if has('nvim') || (has('python') && has('python3'))
+if has('nvim') || has('python') || has('python3')
   Plugin 'davidhalter/jedi-vim'
   Plugin 'severin-lemaignan/vim-minimap'
 endif
