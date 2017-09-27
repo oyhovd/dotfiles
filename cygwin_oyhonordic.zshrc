@@ -79,7 +79,7 @@ ZSH_THEME="oyho"
 # git: git stuff
 # history-substring-search: type characters and press up arrow
 #
-plugins=(git history-substring-search globalias)
+plugins=(git history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -161,7 +161,7 @@ export PATH="$PATH:/c/cygwin64/bin"
 #zsh overrides of common .bashrc
 alias gchs="fig -t \\[chs\\]"
 
-source $HOME/.oh-my-zsh-custom/plugins/expand-aliases/expand-aliases.plugin.zsh
+source $HOME/dotfiles/.oh-my-zsh-custom/plugins/expand-aliases/expand-aliases.plugin.zsh
 
 #hack to force terminal to UTF-8, see http://www.cl.cam.ac.uk/~mgk25/unicode.html#term
 #print -n '\e%G'

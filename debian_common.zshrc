@@ -54,6 +54,8 @@ plugins=(git history-substring-search thefuck)
 
 source $ZSH/oh-my-zsh.sh
 
+source $HOME/dotfiles/.oh-my-zsh-custom/plugins/expand-aliases/expand-aliases.plugin.zsh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
