@@ -61,7 +61,18 @@ for d in glob('~/dotfiles/spell/*.add', 1, 1)
   endif
 endfor
 set spellfile=~/dotfiles/spell/en.utf-8.add
-set nospell
+
+hi clear SpellLocal
+hi SpellLocal cterm=undercurl ctermfg=cyan
+hi clear SpellBad
+hi SpellBad cterm=undercurl ctermfg=red
+hi clear SpellCap
+hi SpellCap cterm=undercurl ctermfg=Blue
+hi clear SpellRare
+hi SpellRare cterm=undercurl ctermfg=Magenta
+
+set spell
+"set nospell
 "let g:load_doxygen_syntax=1
 let g:SpellStatus=1
 function! SpellOnOff()
@@ -72,7 +83,7 @@ function! SpellOnOff()
   endif
 endfunction
 au FileType qf                       setlocal nospell
-au BufNewFile,BufRead *     setlocal nospell
+"au BufNewFile,BufRead *     setlocal nospell
 au BufNewFile,BufRead *.dox setf doxygen
 au BufNewFile,BufRead *.dox call SpellOnOff()
 au BufNewFile,BufRead *.h   call SpellOnOff()
