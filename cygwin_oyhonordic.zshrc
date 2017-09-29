@@ -146,43 +146,4 @@ source $ZSH/oh-my-zsh.sh
 
 #common stash
 source ~/dotfiles/.bashrc
-source ~/scripts/setenv
 
-export PATH="$HOME/scripts:$PATH"
-export VisualStudioDisabled='true'
-
-export PATH="$HOME/devel/g:/cygdrive/c/tedtools/ted:$PATH"
-export PATH="$HOME/devel/fig:$PATH"
-export PATH="$HOME/devel/f:$PATH"
-export PATH="$HOME/devel/debug-tools:$PATH"
-
-#for MinGW
-export PATH="/cygdrive/c/MinGW/bin:/cygdrive/c/Program Files (x86)/cmocka/bin:/cygdrive/c/Program Files/7-Zip:$PATH"
-
-#adding cygwin last in case we use MinGW and want to access the cygwin tools
-export PATH="$PATH:/c/cygwin64/bin"
-
-#zsh overrides of common .bashrc
-alias gchs="fig -t \\[chs\\]"
-
-#source $HOME/dotfiles/.oh-my-zsh-custom/plugins/expand-aliases/expand-aliases.plugin.zsh
-
-#hack to force terminal to UTF-8, see http://www.cl.cam.ac.uk/~mgk25/unicode.html#term
-#print -n '\e%G'
-
-#alias to ssh into virtualbox
-alias debian="$HOME/scripts/debian.sh"
-alias mbrupdate="$HOME/scripts/mbrupdate.sh"
-
-#some fixes for git
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-export FCEDIT=vim
-
-#override this on cygwin
-export TESTHARNESSPY="/bin/python"
-
-#cygwin python
-alias cygpy="/cygdrive/c/cygwin64/bin/python"

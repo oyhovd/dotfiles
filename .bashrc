@@ -120,6 +120,34 @@ function dbg52()
   /home/carles/prog/zephyr-sdk/sysroots/i686-pokysdk-linux/usr/bin/arm-poky-eabi/arm-poky-eabi-gdb
 }
 
+export PATH="$HOME/scripts:$PATH"
+export VisualStudioDisabled='true'
+
+export PATH="$HOME/devel/g:/cygdrive/c/tedtools/ted:$PATH"
+export PATH="$HOME/devel/fig:$PATH"
+export PATH="$HOME/devel/f:$PATH"
+export PATH="$HOME/devel/debug-tools:$PATH"
+
+#for MinGW
+export PATH="/cygdrive/c/MinGW/bin:/cygdrive/c/Program Files (x86)/cmocka/bin:/cygdrive/c/Program Files/7-Zip:$PATH"
+
+#adding cygwin last in case we use MinGW and want to access the cygwin tools
+export PATH="$PATH:/c/cygwin64/bin"
+
+#hack to force terminal to UTF-8, see http://www.cl.cam.ac.uk/~mgk25/unicode.html#term
+#print -n '\e%G'
+
+#some fixes for git
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+#override this on cygwin
+export TESTHARNESSPY="/bin/python"
+
+#cygwin python
+alias cygpy="/cygdrive/c/cygwin64/bin/python"
+
 ###########################################################
 #General stuff, platform independent
 
