@@ -96,10 +96,13 @@ set complete+=kspell
 "autocmd BufWritePre * :mks! ~/.vim/autosave
 
 "highlighting
-highlight WhitespaceEOL ctermbg=darkred guibg=darkred
-highlight Tabs ctermbg=blue guibg=blue
+au Bufenter * highlight WhitespaceEOL ctermbg=darkred guibg=darkred
+au Bufenter * highlight Tabs ctermbg=blue guibg=blue
 au BufEnter * match WhitespaceEOL /\s\+$/
 au BufEnter * 2match Tabs /\t\+/
+"disable highlighting for vim help
+au BufEnter *vim/vim*/doc* match WhitespaceEOL //
+au BufEnter *vim/vim*/doc* 2match Tabs //
 
 "sed swpfile dir
 :set directory=$HOME/.vim/swapfiles//
@@ -329,30 +332,38 @@ nnoremap <Leader>1 :call NumberToggle()<cr>
 "command! GdbJlinkServerKill call GdbJlinkServerKill()
 
 "commenting
-"put comment string into c register
-autocmd BufEnter * :let g:CommentString = ""
+"use # for unknown files as it is used a lot.
+autocmd BufEnter * :let g:CommentString = "#"
 autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let g:CommentString = "//"
-autocmd BufEnter *.s :let g:CommentString = ";"
-autocmd BufEnter *.py,*.sh :let g:CommentString = "#"
+autocmd BufEnter *.s,*.S :let g:CommentString = ";"
 autocmd BufEnter *.vimrc,*.vim :let g:CommentString = "\""
-"get characters in comment string into u register
-autocmd BufEnter * :let g:CommentStringLength = 0
-autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let g:CommentStringLength = 2
-autocmd BufEnter *.s :let g:CommentStringLength = 1
-autocmd BufEnter *.py,*.sh :let g:CommentStringLength = 1
-autocmd BufEnter *.vimrc,*.vim :let g:CommentStringLength = 1
 
 "line
 function! InsertCommentString()
-  let @"=g:CommentString
-  :normal 0P+
+  let line = g:CommentString . getline('.')
+  "deletes the current line
+  delete
+  put! =line
+  +
+endfunction
+
+function! DeleteCommentString()
+  "read line
+  let line=getline('.')
+  if line =~# '^\s*' . g:CommentString
+    let line = substitute(line, g:CommentString, '', '')
+    "deletes the current line
+    delete
+    put! =line
+    +
+  endif
 endfunction
 
 nmap \ :call InsertCommentString()<CR>
-nmap <bar> :normal _<c-r>=g:CommentStringLength<CR>x<CR>+
+nmap <bar> :call DeleteCommentString()<CR>
 "selection
 vmap \ :call InsertCommentString()<CR>
-vmap <bar> :normal _<c-r>=g:CommentStringLength<CR>x<CR>+
+vmap <bar> :call DeleteCommentString()<CR>
 
 ""GPIO debugging
 "function! PinDebug()
