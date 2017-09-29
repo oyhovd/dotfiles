@@ -1,4 +1,4 @@
-source $HOME/dotfiles/debian_common.zshrc
+source $HOME/dotfiles/.zshrc
 
 #alias win="ssh -t 192.168.56.1 'cd `pwd | sed s:/home/oyho/::` ; zsh'"
 #just to overload the common bashrc version

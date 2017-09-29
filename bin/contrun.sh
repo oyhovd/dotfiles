@@ -94,6 +94,8 @@ do
   echo ""
   echo $HELP
 
+  REDRAW=0
+
   while true
   do
 
@@ -103,6 +105,12 @@ do
       THIS_SLEEP_TIME=0
     else
       THIS_SLEEP_TIME=$SLEEP_TIME
+    fi
+
+    if [[ $REDRAW -ne 0 ]]
+    then
+      #Sleep almost nothing when waiting to redraw
+      THIS_SLEEP_TIME=0.3
     fi
 
     if [[ $THIS_SLEEP_TIME -eq 0 ]]
@@ -138,7 +146,8 @@ do
     then
       ((SEPARATOR_OFFSET++))
       echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
-      printoutput
+      #printoutput
+      REDRAW=1
       echo ""
       echo $HELP
       continue
@@ -147,7 +156,8 @@ do
     then
       ((SEPARATOR_OFFSET--))
       echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
-      printoutput
+      #printoutput
+      REDRAW=1
       echo ""
       echo $HELP
       continue
@@ -156,7 +166,8 @@ do
     then
       ((LENGTH_EXPANSION++))
       echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
-      printoutput
+      #printoutput
+      REDRAW=1
       echo ""
       echo $HELP
       continue
@@ -165,7 +176,8 @@ do
     then
       ((LENGTH_EXPANSION--))
       echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
-      printoutput
+      #printoutput
+      REDRAW=1
       echo ""
       echo $HELP
       continue
@@ -199,6 +211,12 @@ do
       echo "$OUTPUT" | vim -m -
       echo "Continuing."
     fi
+    if [[ $REDRAW = 1 ]]
+    then
+      printoutput
+      REDRAW=0
+    fi
+
     break
   done
 
