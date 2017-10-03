@@ -175,6 +175,7 @@ alias ninja="nice -n19 ninja"
 #show all git branches with last commiter
 alias glogallnames="git for-each-ref --sort=-committerdate  --format='%(committername) %(committerdate)   %(refname)' refs/remotes/origin"
 
+alias gl="git log --graph --decorate"
 alias gl1="git log -n1 --decorate"
 alias gnuke="git clean -xdf"
 

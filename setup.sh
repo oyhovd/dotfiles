@@ -54,6 +54,11 @@ if ! [ -f "$HOME/.zshrc" ]; then
   last_invalid
 fi
 
+if ! [ -f "$HOME/.bashrc" ]; then
+  ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+  last_invalid
+fi
+
 #vim setup
 if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
