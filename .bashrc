@@ -64,6 +64,8 @@ if [ -f "$HOME/.is_nordic" ]; then
   export CMOCKA_MESSAGE_OUTPUT=STDOUT #|SUBUNIT|TAP|XML  # Determines the output format of cmocka.
   export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report into the file test-report.xml
 
+  export CC='/usr/bin/gcc-6' #unit tests set up for ggc-4 really, but 6 works. 7 throws warnings.
+
   #don't remember what this is for
   export PATH="$PATH:$HOME/.local/bin"
 
