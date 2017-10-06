@@ -45,7 +45,7 @@ if [ -f "$HOME/.is_nordic" ]; then
 
   #Keil/MDK stuff
   export KEIL_PATH=/home/oyho/armstuff
-  export FAMILY_PACK_PATH=/home/oyho/armstuff/ARM/Pack/NordicSemiconductor/nRF_DeviceFamilyPack/8.9.0/Device
+  export FAMILY_PACK_PATH=/home/oyho/armstuff/ARM/Pack/NordicSemiconductor/nRF_DeviceFamilyPack/8.14.1.ext/Device
   export CMSIS_PATH=/home/oyho/armstuff/ARM/Pack/ARM/CMSIS/4.1.0/CMSIS
 
   #ARM Compiler 5 stuff
