@@ -52,6 +52,21 @@ set textwidth=100
 set formatoptions-=l
 set formatoptions-=t
 
+"syntax for jinja2 files.
+function! Jinja2Filetype()
+  if @% =~# '.*\h\.jinja2'
+    setf c
+  endif
+  if @% =~# '.*\py\.jinja2'
+    setf python
+  endif
+  if @% =~# '.*\dox\.jinja2'
+    setf doxygen
+  endif
+endfunction
+
+au BufNewFile,BufRead *.jinja2 call Jinja2Filetype()
+
 "spell checking
 set spell spelllang=en_us
 "Rebuild spell file if the word list has changed (e.g. from Git)
