@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+  echo "Usage: f 1st 2nd 3rd ..."
+  exit
+fi
+
+str="find "
+
+for var in "$@"
+do
+  if [ ! $var = $1 ]
+  then
+    str="$str -and"
+  fi
+
+  str="$str \( -path '*$var*' -or -name '*$var*' \)"
+done
+#echo $str
+eval $str
