@@ -183,6 +183,8 @@ alias gnuke="git clean -xdf"
 
 alias gchs='grep -r --include "*.[chsS]"'
 
+alias j='jobs'
+
 #adding private bin for overloading tools etc
 export PATH="$HOME/bin:$PATH"
 
