@@ -29,7 +29,8 @@ set wildmode=list:longest  "(file-listing when opening a new file)
 set backspace=2
 set completeopt+=longest
 set completeopt+=menuone
-"set completeopt-=preview
+"complete from spell list
+set complete+=kspell
 "set updatetime=250
 let mapleader = "\<Space>"
 if has('nvim')
@@ -67,6 +68,9 @@ endfunction
 
 au BufNewFile,BufRead *.jinja2 call Jinja2Filetype()
 
+"syntax for doxygen
+au BufNewFile,BufRead *.dox setf doxygen
+
 "spell checking
 set spell spelllang=en_us
 "Rebuild spell file if the word list has changed (e.g. from Git)
@@ -87,28 +91,26 @@ hi clear SpellRare
 hi SpellRare cterm=undercurl ctermfg=Magenta
 
 set spell
+au FileType qf                       setlocal nospell
+au BufRead *.fugitiveblame           setlocal nospell
+au BufRead *.git//*                  setlocal nospell
+
 "set nospell
 "let g:load_doxygen_syntax=1
-let g:SpellStatus=1
-function! SpellOnOff()
-  if (g:SpellStatus)
-    setlocal spell
-  else
-    setlocal nospell
-  endif
-endfunction
-au FileType qf                       setlocal nospell
+"let g:SpellStatus=1
+"function! SpellOnOff()
+"  if (g:SpellStatus)
+"    setlocal spell
+"  else
+"    setlocal nospell
+"  endif
+"endfunction
 "au BufNewFile,BufRead *     setlocal nospell
-au BufNewFile,BufRead *.dox setf doxygen
-au BufNewFile,BufRead *.dox call SpellOnOff()
-au BufNewFile,BufRead *.h   call SpellOnOff()
-au BufNewFile,BufRead *.h.in call SpellOnOff()
+"au BufNewFile,BufRead *.dox call SpellOnOff()
+"au BufNewFile,BufRead *.h   call SpellOnOff()
+"au BufNewFile,BufRead *.h.in call SpellOnOff()
 "Commit messages
-au BufNewFile,BufRead *EDITMSG   call SpellOnOff()
-set complete+=kspell
-
-"save session in case of instability...
-"autocmd BufWritePre * :mks! ~/.vim/autosave
+"au BufNewFile,BufRead *EDITMSG   call SpellOnOff()
 
 "highlighting
 au Bufenter * highlight WhitespaceEOL ctermbg=darkred guibg=darkred
@@ -155,28 +157,6 @@ autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal g`\"" |
             \ endif
-
-"eclim stuff/youcompleteme ycm stuff
-"let g:ycm_auto_trigger = 0
-let g:ycm_min_num_of_chars_for_completion = 99
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-if !has('nvim')
-  set nocompatible
-  filetype plugin indent on
-  let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<oyho\>\)\c'
-  let g:EclimKeepLocalHistory = 1
-  nmap <F3> :CSearchContext<CR>
-  nmap <Leader>ee :EclimEnable<CR>
-  nmap <Leader>ed :EclimDisable<CR>
-  imap <c-u> <c-x><c-u>
-else
-  nmap <F3> :YcmCompleter 
-  nmap <F4> :YcmCompleter GoToDefinition<CR>
-  nmap <F5> :YcmCompleter GoToDeclaration<CR>
-"  let g:ycm_autoclose_preview_window_after_completion = 1
-  let g:ycm_autoclose_preview_window_after_insertion = 1
-endif
 
 "ctrlp stuff
 " ignore gitignored files
