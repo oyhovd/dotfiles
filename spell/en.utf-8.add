@@ -27,7 +27,7 @@ RXEN
 RXIDLE
 TXEN
 TXIDLE
-PHY
+#HY
 TIFS
 GPIOTE
 ISR
@@ -94,3 +94,11 @@ _chan
 _surv
 _RSSISTART
 _MULTITIMER
+ble_
+ble_gap
+#HY
+PHY
+params_t
+_len
+_pdu
+_phy
