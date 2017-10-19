@@ -35,21 +35,25 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'wincent/command-t'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-commentary.git'
 Plugin 'radenling/vim-dispatch-neovim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'w0rp/ale'
+Plugin 'sheerun/vim-polyglot'
 "Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'rust-lang/rust.vim'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 if !has("win32unix")
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 endif
 Plugin 'majutsushi/tagbar'
 if has('nvim') || has('python') || has('python3')
-  Plugin 'davidhalter/jedi-vim'
+  "Remember pip install jedi
+  "Plugin 'davidhalter/jedi-vim'
   Plugin 'severin-lemaignan/vim-minimap'
 endif
 "sudo apt-get install ttf-unifont to show the character
