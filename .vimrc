@@ -245,16 +245,6 @@ endfunction
 "minimap stuff
 let g:minimap_highlight='Visual'
 
-function! FindConflict()
-  normal /\(=======\|<<<<<<<\|>>>>>>>\)
-endfunction
-:command! FindConflict call FindConflict()
-
-"Disable Eclim by default
-if exists(":EclimDisable")
-  autocmd VimEnter * EclimDisable
-endif
-
 if getcwd() =~ 'zephyr'
   source ~/dotfiles/zephyr.vim
 endif
