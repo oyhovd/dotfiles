@@ -155,6 +155,9 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "NERDTree stuff
 nmap <Leader>bn :NERDTree<CR>
 
+"undotree stuff
+nmap <Leader>ut :UndotreeToggle<CR>
+
 "ctags
 let g:tagsupdate = 0
 function! DoTagsUpdateIfSet()
