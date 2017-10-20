@@ -1,9 +1,3 @@
-"removing tmux from dispatch handlers as win ninja doesn't work. dispatch-neovim should override
-"this again.
-if !has('nvim')
-  let g:dispatch_handlers = [ 'screen', 'windows', 'iterm', 'x11', 'headless', ]
-endif
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -32,34 +26,33 @@ Plugin 'VundleVim/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-"Plugin 'wincent/command-t'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-commentary.git'
-Plugin 'radenling/vim-dispatch-neovim'
+"gut stuff
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+
 Plugin 'terryma/vim-multiple-cursors'
+
+"syntax checker
 Plugin 'w0rp/ale'
+
+"updated syntax for many filetypes
 Plugin 'sheerun/vim-polyglot'
-"Plugin 'vim-scripts/Conque-GDB'
-"Plugin 'rust-lang/rust.vim'
+
+"navigation stuff
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
-"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 if !has("win32unix")
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 endif
-Plugin 'majutsushi/tagbar'
 if has('nvim') || has('python') || has('python3')
   "Remember pip install jedi
   "Plugin 'davidhalter/jedi-vim'
   Plugin 'severin-lemaignan/vim-minimap'
 endif
-"sudo apt-get install ttf-unifont to show the character
-"if has('nvim')
-"  Plugin 'Valloric/YouCompleteMe'
-"endif
+
+Plugin 'majutsushi/tagbar'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required

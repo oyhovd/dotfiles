@@ -33,11 +33,6 @@ set completeopt+=menuone
 set complete+=kspell
 "set updatetime=250
 let mapleader = "\<Space>"
-if has('nvim')
-set ffs=unix,dos
-else
-set ffs=dos,unix
-endif
 set undofile
 set undodir=~/.vim/undofiles
 set diffopt+=vertical
@@ -95,23 +90,6 @@ au FileType qf                       setlocal nospell
 au BufRead *.fugitiveblame           setlocal nospell
 au BufRead *.git//*                  setlocal nospell
 
-"set nospell
-"let g:load_doxygen_syntax=1
-"let g:SpellStatus=1
-"function! SpellOnOff()
-"  if (g:SpellStatus)
-"    setlocal spell
-"  else
-"    setlocal nospell
-"  endif
-"endfunction
-"au BufNewFile,BufRead *     setlocal nospell
-"au BufNewFile,BufRead *.dox call SpellOnOff()
-"au BufNewFile,BufRead *.h   call SpellOnOff()
-"au BufNewFile,BufRead *.h.in call SpellOnOff()
-"Commit messages
-"au BufNewFile,BufRead *EDITMSG   call SpellOnOff()
-
 "highlighting
 au Bufenter * highlight WhitespaceEOL ctermbg=darkred guibg=darkred
 au Bufenter * highlight Tabs ctermbg=blue guibg=blue
@@ -133,8 +111,6 @@ imap <Up> <Nop>
 imap <Down> <Nop>
 imap <Left> <Nop>
 imap <Right> <Nop>
-"nmap <Tab> :tabnext<CR>
-"nmap <S-Tab> :tabprevious<CR>
 
 nmap <Leader>m <c-w>_<c-w><Bar>
 nmap <Leader>+ <c-w>_<c-w><Bar>
@@ -162,7 +138,6 @@ autocmd BufReadPost *
 " ignore gitignored files
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 if executable('ag')
-  "if has('nvim')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
@@ -212,130 +187,24 @@ endfunc
 
 nnoremap <Leader>1 :call NumberToggle()<cr>
 
-"GDB setup
-""default: 50 is too slow (races, inconsistencies in vim tui buffer?
-"let g:ConqueGdb_ReadTimeout = 100
-"let g:ConqueGdb_SrcSplit = 'left'
-"
-"function! NrfjprogHalt()
-"  if !exists('g:NrfjprogFamily')
-"    let g:NrfjprogFamily = "nrf52"
-"  endif
-"
-"  if !exists('g:NrfjprogSerial')
-"    let g:NrfjprogSerial = "$OYHO_NRF52_DEV_KIT"
-"  endif
-"
-"  exe "!nrfjprog --halt --family " . g:NrfjprogFamily . " --snr " . g:NrfjprogSerial
-"  "force update of tui buffer
-"  redraw!
-"  ConqueGdbCommand pwd
-"endfunction
-"
-"function! GdbBreakTemp()
-"  call conque_gdb#command("tbreak " . expand("%") . ":" . line("."))
-"endfunction
-"
-""Starts ARM GDB with JLink server
-"function! GdbJlink()
-"  "run (continue)
-"  nmap <F5> :ConqueGdbCommand c<CR>
-"  imap <F5> <Esc><F5>
-"  "reset
-"  nmap <C-F5> :ConqueGdbCommand monitor reset<CR>
-"  imap <C-F5> <Esc><C-F5>
-"  "halt
-"  nmap <F6> :call NrfjprogHalt()<CR><CR>
-"  imap <F6> <Esc><F6>
-"  "add temporary breakpoint (for "run to line")
-"  nmap <F9> :call GdbBreakTemp()<CR>
-"  imap <F9> <Esc><F9>
-"  "step
-""  nmap <F11> :ConqueGdbCommand monitor step<CR>
-"  nmap <F11> :ConqueGdbCommand step<CR>
-"  imap <F11> <Esc><F11>
-"  "step out of
-"  nmap <C-F10> :ConqueGdbCommand finish<CR>
-"  imap <C-F10> <Esc><C-F10>
-"  "step machine instruction
-"  nmap <S-F10> :ConqueGdbCommand stepi<CR>
-"  imap <S-F10> <Esc><S-F10>
-"  "Shortcut to add any gdb command
-"  nmap <F12> :ConqueGdbCommand 
-"  imap <F12> <Esc><F12>
-"
-"  "open GDB and set up with Jlink server. This uses py version, standard works as well
-"  ConqueGdbExe ~/bin/gnutools/bin/arm-none-eabi-gdb-py.exe
-"  ConqueGdb
-"  ConqueGdbCommand target remote localhost:2331
-"  ConqueGdbCommand monitor clrbp
-"  ConqueGdbCommand monitor reset
-"  "exit insert mode in gdb tui buffer
-"  stopinsert
-"endfunction
-"command! GdbJlink call GdbJlink()
-"
-""Starts GDB (GCC)
-"function! GdbGcc()
-"  "run (continue)
-"  nmap <F5> :ConqueGdbCommand c<CR>
-"  imap <F5> <Esc><F5>
-"  "reset
-"  nmap <C-F5> :ConqueGdbCommand run<CR>
-"  imap <C-F5> <Esc><C-F5>
-"  "halt
-"  nmap <F6> :call NrfjprogHalt()<CR><CR>
-"  imap <F6> <Esc><F6>
-"  "add temporary breakpoint (for "run to line")
-"  nmap <F9> :call GdbBreakTemp()<CR>
-"  imap <F9> <Esc><F9>
-"  "step (shift version also where F11 means full screen
-"  nmap <S-F11> :ConqueGdbCommand step<CR>
-"  imap <S-F11> <Esc><S-F11>
-"  nmap <F11> :ConqueGdbCommand step<CR>
-"  imap <F11> <Esc><F11>
-""  nmap <F11> :ConqueGdbCommand monitor step<CR>
-"  nmap <F10> :ConqueGdbCommand next<CR>
-"  imap <F10> <Esc><F10>
-"  "step out of
-"  nmap <C-F10> :ConqueGdbCommand finish<CR>
-"  imap <C-F10> <Esc><C-F10>
-"  "step machine instruction
-"  nmap <S-F10> :ConqueGdbCommand stepi<CR>
-"  imap <S-F10> <Esc><S-F10>
-"  "Shortcut to add any gdb command
-"  nmap <F12> :ConqueGdbCommand 
-"  imap <F12> <Esc><F12>
-"
-"  "open GDB and set up with Jlink server. This uses py version, standard works as well
-"  "ConqueGdbExe /cygdrive/c/cygwin32/bin/gdb
-"  ConqueGdb
-"endfunction
-"command! GdbGcc call GdbGcc()
-"
-"
-""open JLink server
-"function! GdbJlinkServer()
-"  exe '!/cygdrive/c/Program\ Files\ \(x86\)/SEGGER/JLink_V510n/JLinkGDBServer.exe -select USB -device nRF52832_xxAA -if SWD -speed 1000 -noir &'
-"endfunction
-"command! GdbJlinkServer call GdbJlinkServer()
-"
-""kill JLink server
-"function! GdbJlinkServerKill()
-"  exe '!taskkill -f -im JLinkGDBServer.exe'
-"endfunction
-"command! GdbJlinkServerKill call GdbJlinkServerKill()
-
 "commenting
-"use # for unknown files as it is used a lot.
-autocmd BufEnter * :let g:CommentString = "#"
-autocmd BufEnter *.c,*.cpp,*.h,*.hpp :let g:CommentString = "//"
-autocmd BufEnter *.s,*.S :let g:CommentString = ";"
-autocmd BufEnter *.vimrc,*.vim :let g:CommentString = "\""
+function! GenerateCommentString()
+  "Remove the %s
+  let localCommentString = substitute(&commentstring, '%s', '', '')
 
-"line
+  " If localCommentString is /**/, replace with //
+  if localCommentString =~# '/\*\*/'
+    let localCommentString = '//'
+  endif
+
+  "Strip trailing spaces
+  let localCommentString = substitute(localCommentString, '\s\+', '', '')
+  return localCommentString
+endfunction
+
 function! InsertCommentString()
-  let line = g:CommentString . getline('.')
+  let localCommentString = GenerateCommentString()
+  let line = localCommentString . getline('.')
   "deletes the current line
   delete
   put! =line
@@ -343,10 +212,10 @@ function! InsertCommentString()
 endfunction
 
 function! DeleteCommentString()
-  "read line
+  let localCommentString = GenerateCommentString()
   let line=getline('.')
-  if line =~# '^\s*' . g:CommentString
-    let line = substitute(line, g:CommentString, '', '')
+  if line =~# '^\s*' . localCommentString
+    let line = substitute(line, localCommentString, '', '')
     "deletes the current line
     delete
     put! =line
@@ -359,38 +228,6 @@ nmap <bar> :call DeleteCommentString()<CR>
 "selection
 vmap \ :call InsertCommentString()<CR>
 vmap <bar> :call DeleteCommentString()<CR>
-
-""GPIO debugging
-"function! PinDebug()
-"  normal o
-"  normal o#ifndef PIN_DEBUG_ENABLE
-"  normal o#define PIN_DEBUG_ENABLE
-"  normal o#endif
-"  normal o#include "pin_debug_transport.h"
-"  normal o
-"endfunction
-":command! PinDebug call PinDebug()
-"
-"function! PinDebugInit()
-"  normal oDBP_PORTA_ENABLE;
-"endfunction
-":command! PinDebugInit call PinDebugInit()
-"
-"function! SpiDebug()
-"  "blank line below DEBUG_SPI_END
-"  normal o
-"  normal O/***********DEBUG_SPI_END***************/
-"  normal -
-"  r~/devel/debug-tools/debug_spi.c
-"  normal -
-"  call PinDebug()
-"endfunction
-":command! SpiDebug call SpiDebug()
-"
-"function! SpiDebugInit()
-"  normal odebug_spi_config(DBP6, DBP7);
-"endfunction
-":command! SpiDebugInit call SpiDebugInit()
 
 "quickfix window height
 au FileType qf call AdjustWindowHeight(3, 20)
