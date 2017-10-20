@@ -66,6 +66,12 @@ au BufNewFile,BufRead *.jinja2 call Jinja2Filetype()
 "syntax for doxygen
 au BufNewFile,BufRead *.dox setf doxygen
 
+"ale syntax checker. Disable auto checking.
+let g:ale_lint_on_text_changed=0
+let g:ale_lint_on_enter=0
+let g:ale_lint_on_save=0
+let g:ale_lint_on_filetype_change=0
+
 "spell checking
 set spell spelllang=en_us
 "Rebuild spell file if the word list has changed (e.g. from Git)
