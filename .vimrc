@@ -125,7 +125,8 @@ set splitright
 set splitbelow
 
 "Easymotion mappings
-nmap <Leader>ww <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_smartcase = 1
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
 
 " resize
 nmap <c-Left> :vertical res -10<cr>
