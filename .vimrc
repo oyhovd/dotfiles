@@ -124,6 +124,9 @@ nmap <Leader>= <c-w>=
 set splitright
 set splitbelow
 
+"Easymotion mappings
+nmap <Leader>ww <Plug>(easymotion-overwin-f2)
+
 " resize
 nmap <c-Left> :vertical res -10<cr>
 nmap <c-Right> :vertical res +10<cr>
@@ -166,6 +169,13 @@ function! DoTagsUpdateIfSet()
   endif
 endfunction
 au BufWritePost * call DoTagsUpdateIfSet()
+
+function! EnableTagsUpdate()
+  let g:tagsupdate = 1
+  call DoTagsUpdateIfSet()
+endfunction
+
+command TagsUpdate call EnableTagsUpdate()
 
 "TagBar stuff
 "also enable tags updating by opening the tagbar window this way

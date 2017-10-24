@@ -42,6 +42,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'scrooloose/nerdtree'
+Plugin 'easymotion/vim-easymotion'
 if !has("win32unix")
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 endif
