@@ -126,6 +126,8 @@ set splitbelow
 
 "Easymotion mappings
 let g:EasyMotion_smartcase = 1
+map <Leader>s <Plug>(easymotion-bd-f2)
+"use overwin version in normal mode as it jumps between windows as well
 nmap <Leader>s <Plug>(easymotion-overwin-f2)
 
 " resize
