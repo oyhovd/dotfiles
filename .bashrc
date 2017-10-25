@@ -41,34 +41,36 @@ fi
 
 ###########################################################
 #Debian stuff, Nordic related
-if [ -f "$HOME/.is_nordic" ]; then
+if ! [ -f "$HOME/.is_cygwin" ]; then
+  if [ -f "$HOME/.is_nordic" ]; then
 
-  #Keil/MDK stuff
-  export KEIL_PATH=/home/oyho/armstuff
-  export FAMILY_PACK_PATH=/home/oyho/armstuff/ARM/Pack/NordicSemiconductor/nRF_DeviceFamilyPack/8.14.1.ext/Device
-  export CMSIS_PATH=/home/oyho/armstuff/ARM/Pack/ARM/CMSIS/4.1.0/CMSIS
+    #Keil/MDK stuff
+    export KEIL_PATH=/home/oyho/armstuff
+    export FAMILY_PACK_PATH=/home/oyho/armstuff/ARM/Pack/NordicSemiconductor/nRF_DeviceFamilyPack/8.14.1.ext/Device
+    export CMSIS_PATH=/home/oyho/armstuff/ARM/Pack/ARM/CMSIS/4.1.0/CMSIS
 
-  #ARM Compiler 5 stuff
-  export PATH="/usr/local/ARM_Compiler_5.06u4/bin:$PATH"
-  export PATH="/usr/local/gcc-arm-none-eabi-5_4-2016q3/bin/:$PATH"
-  export ARMLMD_LICENSE_FILE=1714@licsrv1.nvlsi.no
-  export ARM_TOOL_VARIANT=mdk_pro_flex
+    #ARM Compiler 5 stuff
+    export PATH="/usr/local/ARM_Compiler_5.06u4/bin:$PATH"
+    export PATH="/usr/local/gcc-arm-none-eabi-5_4-2016q3/bin/:$PATH"
+    export ARMLMD_LICENSE_FILE=1714@licsrv1.nvlsi.no
+    export ARM_TOOL_VARIANT=mdk_pro_flex
 
-  #flash script
-  alias flash="$HOME/devel/debug-tools/flash"
+    #flash script
+    alias flash="$HOME/devel/debug-tools/flash"
 
-  alias gdb="gdb-multiarch"
-  alias jira="temp=/home/oyho/devel/jira_cmd python3 ~/devel/jira_cmd/jira.py"
+    alias gdb="gdb-multiarch"
+    alias jira="temp=/home/oyho/devel/jira_cmd python3 ~/devel/jira_cmd/jira.py"
 
-  export CTEST_OUTPUT_ON_FAILURE=1                     # You don't have to set --output-on-failure everytime you call ctest.
-  export CMOCKA_MESSAGE_OUTPUT=STDOUT #|SUBUNIT|TAP|XML  # Determines the output format of cmocka.
-  export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report into the file test-report.xml
+    export CTEST_OUTPUT_ON_FAILURE=1                     # You don't have to set --output-on-failure everytime you call ctest.
+    export CMOCKA_MESSAGE_OUTPUT=STDOUT #|SUBUNIT|TAP|XML  # Determines the output format of cmocka.
+    export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report into the file test-report.xml
 
-  export CC='/usr/bin/gcc-6' #unit tests set up for ggc-4 really, but 6 works. 7 throws warnings.
+    export CC='/usr/bin/gcc-6' #unit tests set up for ggc-4 really, but 6 works. 7 throws warnings.
 
-  #don't remember what this is for
-  export PATH="$PATH:$HOME/.local/bin"
+    #don't remember what this is for
+    export PATH="$PATH:$HOME/.local/bin"
 
+  fi
 fi
 
 ###########################################################
