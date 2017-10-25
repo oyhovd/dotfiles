@@ -160,6 +160,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 "NERDTree stuff
 nmap <Leader>bn :NERDTree<CR>
+nmap <Leader>nt :NERDTree<CR>
 
 "undotree stuff
 nmap <Leader>ut :UndotreeToggle<CR>
