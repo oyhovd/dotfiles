@@ -9,7 +9,8 @@ let g:terminal_scrollback_buffer_size = 100000
 "esc out of terminal
 "tnoremap <Esc> <C-\><C-n>
 
-colorscheme torte
+"colorscheme torte
+colorscheme solarized
 set guifont=Lucida_Console:h9:cANSI
 set langmenu=en_US.UTF-8
 set history=2000
