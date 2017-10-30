@@ -181,7 +181,8 @@ alias glogallnames="git for-each-ref --sort=-committerdate  --format='%(committe
 
 alias gl="git log --graph --decorate"
 alias gl1="git log -n1 --decorate"
-alias gnuke="git clean -xdf"
+# Exclude all files in nuke-exclude from gnuke
+alias gnuke="git clean -xdf $(for line in `cat $HOME/dotfiles/gnuke-exclude`; do echo -n "--exclude=\"$line\" "; done)"
 
 alias gchs='grep -r --include "*.[chsS]"'
 
