@@ -184,6 +184,7 @@ command TagsUpdate call EnableTagsUpdate()
 "TagBar stuff
 "also enable tags updating by opening the tagbar window this way
 nmap <Leader>bta :TagbarToggle<CR>:let g:tagsupdate=1<CR>:let g:tagsupdate<CR>
+nmap <Leader>tb :TagbarToggle<CR>:let g:tagsupdate=1<CR>:let g:tagsupdate<CR>
 
 "grepping
 "get rid of the /dev/null
