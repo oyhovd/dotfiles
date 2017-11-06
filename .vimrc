@@ -167,6 +167,11 @@ nmap <Leader>ut :UndotreeToggle<CR>
 
 "ctags
 let g:tagsupdate = 0
+
+if filereadable('tags')
+  let g:tagsupdate = 1
+endif
+
 function! DoTagsUpdateIfSet()
   if g:tagsupdate > 0
     silent! !sh $HOME/dotfiles/bin/tagsupdate.sh force > /dev/null 2>&1 &
