@@ -257,6 +257,8 @@ nmap <bar> :call DeleteCommentString()<CR>
 "selection
 vmap \ :call InsertCommentString()<CR>
 vmap <bar> :call DeleteCommentString()<CR>
+"NERDcommenter nerdcommenter
+let g:NERDSpaceDelims = 1
 
 "quickfix window height
 au FileType qf call AdjustWindowHeight(3, 20)
