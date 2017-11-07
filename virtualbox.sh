@@ -22,12 +22,12 @@ sudo m-a prepare
 last_invalid
 
 #reading into dummy variable (or else the read seems to return immediately)
-read -p "Click on Install Guest Additions... from the Devices menu, then press enter to continue" dummy
+read -p "Click on Install Guest Additions... from the Devices menu, then press enter to continue. It may auto mount, in that case the mount command is expected to fail." dummy
 
 mount /media/cdrom
 last_invalid
 
-sh /media/cdrom/VBoxLinuxAdditions.run
+sudo sh /media/cdrom/VBoxLinuxAdditions.run
 last_invalid
 
 echo "Setup done"
