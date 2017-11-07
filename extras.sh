@@ -1,9 +1,5 @@
 #!/bin/sh
 
-#su
-#adduser oyho sudo
-#git clone https://github.com/oyhovd/dotfiles.git
-
 last_invalid()
 {
   if [ $? -ne 0 ]; then
@@ -25,12 +21,6 @@ fi
 
 if exists pip; then
   pip install matplotlib
-  last_invalid
-fi
-
-#cleanup
-if exists apt-get; then
-  sudo apt-get clean
   last_invalid
 fi
 
