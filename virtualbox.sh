@@ -19,7 +19,8 @@ if exists apt-get; then
   last_invalid
 fi
 
-sudo m-a prepare
+#Preparing kernel headers. -i to be non-interactive.
+sudo m-a -i prepare
 last_invalid
 
 #reading into dummy variable (or else the read seems to return immediately)
