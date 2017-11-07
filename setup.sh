@@ -135,6 +135,4 @@ fi
 
 echo "Setup done. Do sh extras.sh if needed."
 echo "TODO in script: Set up correct keyboard shortcuts?"
-echo "TODO Set up virtualbox tools"
-echo "TODO SSH keys?"
 
