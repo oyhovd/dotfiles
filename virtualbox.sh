@@ -21,7 +21,8 @@ fi
 sudo m-a prepare
 last_invalid
 
-read -p "Click on Install Guest Additions... from the Devices menu, then press enter to continue"
+#reading into dummy variable (or else the read seems to return immediately)
+read -p "Click on Install Guest Additions... from the Devices menu, then press enter to continue" dummy
 
 mount /media/cdrom
 last_invalid
