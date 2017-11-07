@@ -18,7 +18,7 @@ if exists apt-get; then
   last_invalid
 fi
 
-m-a prepare
+sudo m-a prepare
 last_invalid
 
 echo "Click on Install Guest Additions... from the Devices menu, then press enter to continue"
