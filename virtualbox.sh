@@ -14,6 +14,7 @@ exists()
 }
 
 if exists apt-get; then
+  sudo apt-get update
   sudo apt-get -y install build-essential module-assistant
   last_invalid
 fi
@@ -30,5 +31,5 @@ last_invalid
 sudo sh /media/cdrom/VBoxLinuxAdditions.run
 last_invalid
 
-echo "Setup done"
+echo "Setup done. Remember to reboot."
 
