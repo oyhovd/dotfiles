@@ -8,6 +8,11 @@ last_invalid()
   fi
 }
 
+exists()
+{
+  command -v $1 >/dev/null 2>&1
+}
+
 if exists apt-get; then
   sudo apt-get -y install build-essential module-assistant
   last_invalid
