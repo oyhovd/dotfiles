@@ -2,6 +2,8 @@
 
 #su
 #adduser oyho sudo
+#apt-get install sudo git
+#logout and in again
 #git clone https://github.com/oyhovd/dotfiles.git
 
 last_invalid()
@@ -16,8 +18,6 @@ exists()
 {
   command -v $1 >/dev/null 2>&1
 }
-
-last_invalid
 
 #install dependencies necessary for the installers in this file
 if exists apt-get; then
@@ -72,9 +72,7 @@ if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
 fi
 
 #Run PluginInstall in vim
-vim +PluginInstall +qall
-last_invalid
-vim +PluginClean +qall
+vim +PluginInstall! +qall
 last_invalid
 
 #utils
@@ -106,22 +104,6 @@ if ! [ -f "$HOME/.gdbinit" ]; then
   fi
 fi
 
-#other installs
-if exists apt-get; then
-  sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip vim-python-jedi
-  last_invalid
-fi
-
-if exists pip3; then
-  sudo pip3 install thefuck
-  last_invalid
-fi
-
-if exists pip; then
-  pip install matplotlib
-  last_invalid
-fi
-
 #copy all config files
 #first create all folders
 find .config -type d -exec mkdir -p {} $HOME/{} \;
@@ -137,11 +119,20 @@ for file in `find .config -type f`; do
   last_invalid
 done
 
+#other basic tools
+if exists apt-get; then
+  sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip
+  last_invalid
+fi
+
 #cleanup
 if exists apt-get; then
   sudo apt-get clean
   last_invalid
 fi
 
-echo "Setup done"
+echo "Setup done. Do sh extras.sh if needed."
+echo "TODO in script: Set up correct keyboard shortcuts?"
+echo "TODO Set up virtualbox tools"
+echo "TODO SSH keys?"
 
