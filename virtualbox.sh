@@ -21,8 +21,7 @@ fi
 sudo m-a prepare
 last_invalid
 
-echo "Click on Install Guest Additions... from the Devices menu, then press enter to continue"
-read
+read -p "Click on Install Guest Additions... from the Devices menu, then press enter to continue"
 
 mount /media/cdrom
 last_invalid
