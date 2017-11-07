@@ -14,12 +14,15 @@ RETRY_NOW=1
 SLEEP_TIME=2
 SEPARATOR_OFFSET=0
 LENGTH_EXPANSION=0
+MAX_LINES=0
+WRAP_HEADROOM=4
 
 PLUS="+"
 MINUS="-"
 
-HELP="Press + or - to adjust sleep time, s to save last log, p to pause, q to quit, e to open last 
-log in editor, l to view with less. m to show more text, n to show less. k to show more tail, j to show more head."
+HELP="Press + or - to adjust sleep time, s to save last log, p to pause, q to quit, e to open last
+log in editor, l to view with less. m to show more text, n to show less, M to show max. k to show
+more tail, j to show more head, K for all tail and J for all head, S for even split."
 
 #Global
 OUTPUT=""
@@ -31,8 +34,8 @@ function printoutput {
   SCREEN_COLS=$(tput cols)
   MAX_CHARS=$(($SCREEN_COLS * 2))
   MAX_SEPARATORS=$(($SCREEN_COLS / 2))
-  #MAX_LINES is: 5 reserved for "failed" and help text, 3 reserved for separator, 2 for "Running" and "Formatting...", the rest is divided by 2 since we allow 2 line lengths.
-  MAX_LINES=$(( ( ($SCREEN_LINES - 5 - 3 - 2) / 2) + ( $LENGTH_EXPANSION * 2) ))
+  #MAX_LINES is: 5 reserved for "failed" and help text, 3 reserved for separator, 2 for "Running" and "Formatting...". Subtracting some lines in case of wraps.
+  MAX_LINES=$(( ( ($SCREEN_LINES - 5 - 3 - 2)) + ( $LENGTH_EXPANSION * 2) - $WRAP_HEADROOM ))
   HEAD_MAX_LINES=$(( ($MAX_LINES / 2) + $SEPARATOR_OFFSET ))
   TAIL_MAX_LINES=$(( ($MAX_LINES / 2) - $SEPARATOR_OFFSET ))
 
@@ -152,6 +155,17 @@ do
       echo $HELP
       continue
     fi
+    if [[ $key = J ]]
+    then
+      SEPARATOR_OFFSET=($MAX_LINES/2)
+      SEPARATOR_OFFSET=($SEPARATOR_OFFSET-1)
+      echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
+      #printoutput
+      REDRAW=1
+      echo ""
+      echo $HELP
+      continue
+    fi
     if [[ $key = k ]]
     then
       ((SEPARATOR_OFFSET--))
@@ -162,9 +176,39 @@ do
       echo $HELP
       continue
     fi
+    if [[ $key = K ]]
+    then
+      SEPARATOR_OFFSET=($MAX_LINES/-2)
+      echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
+      #printoutput
+      REDRAW=1
+      echo ""
+      echo $HELP
+      continue
+    fi
+    if [[ $key = S ]]
+    then
+      SEPARATOR_OFFSET=0
+      echo -e "${CLS}Separator offset: $SEPARATOR_OFFSET"
+      #printoutput
+      REDRAW=1
+      echo ""
+      echo $HELP
+      continue
+    fi
     if [[ $key = m ]]
     then
       ((LENGTH_EXPANSION++))
+      echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
+      #printoutput
+      REDRAW=1
+      echo ""
+      echo $HELP
+      continue
+    fi
+    if [[ $key = M ]]
+    then
+      LENGTH_EXPANSION=($WRAP_HEADROOM/2)
       echo -e "${CLS}Length expansion: $LENGTH_EXPANSION"
       #printoutput
       REDRAW=1
