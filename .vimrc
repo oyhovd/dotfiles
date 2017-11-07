@@ -77,7 +77,7 @@ set spell spelllang=en_us
 "Rebuild spell file if the word list has changed (e.g. from Git)
 for d in glob('~/dotfiles/spell/*.add', 1, 1)
   if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
-    exec 'mkspell! ' . fnameescape(d)
+    exec 'silent mkspell! ' . fnameescape(d)
   endif
 endfor
 set spellfile=~/dotfiles/spell/en.utf-8.add
