@@ -37,10 +37,6 @@ if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
   last_invalid
 fi
 
-#Run PluginInstall in vim
-vim +PluginInstall! +qall
-last_invalid
-
 #utils
 mkdir -p $HOME/bin
 last_invalid
@@ -96,6 +92,12 @@ if exists apt-get; then
   sudo apt-get clean
   last_invalid
 fi
+
+######### Do slow and interactive stuff in the end for quicker testing
+
+#Run PluginInstall in vim
+vim +PluginInstall! +qall
+last_invalid
 
 #zsh and oh-my-zsh setup if not already done
 if ! [ -d "$HOME/.oh-my-zsh" ]; then
