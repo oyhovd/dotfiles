@@ -25,40 +25,6 @@ if exists apt-get; then
   last_invalid
 fi
 
-#zsh and oh-my-zsh setup if not already done
-if ! [ -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  last_invalid
-  mv $HOME/.zshrc $HOME/.zshrc_old
-  last_invalid
-  ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
-  last_invalid
-fi
-
-for file in `find .oh-my-zsh -type f`; do
-  #if link exists and is correct, just skip it.
-  EXISTING_LINK=$(readlink $HOME/$file)
-  TARGET="$HOME/dotfiles/$file"
-  if [ "$EXISTING_LINK" = "$TARGET" ]; then
-    continue
-  fi
-  DIRNAME=$(dirname $file)
-  mkdir -p $HOME/$DIRNAME
-  ln -s $HOME/dotfiles/$file $HOME/$file
-  last_invalid
-done
-
-#"refreshing" .zshrc if deleted
-if ! [ -f "$HOME/.zshrc" ]; then
-  ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
-  last_invalid
-fi
-
-if ! [ -f "$HOME/.bashrc" ]; then
-  ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
-  last_invalid
-fi
-
 #vim setup
 if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -125,9 +91,43 @@ if exists apt-get; then
   last_invalid
 fi
 
-#cleanup
+#apt cleanup
 if exists apt-get; then
   sudo apt-get clean
+  last_invalid
+fi
+
+#zsh and oh-my-zsh setup if not already done
+if ! [ -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  last_invalid
+  mv $HOME/.zshrc $HOME/.zshrc_old
+  last_invalid
+  ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+  last_invalid
+fi
+
+for file in `find .oh-my-zsh -type f`; do
+  #if link exists and is correct, just skip it.
+  EXISTING_LINK=$(readlink $HOME/$file)
+  TARGET="$HOME/dotfiles/$file"
+  if [ "$EXISTING_LINK" = "$TARGET" ]; then
+    continue
+  fi
+  DIRNAME=$(dirname $file)
+  mkdir -p $HOME/$DIRNAME
+  ln -s $HOME/dotfiles/$file $HOME/$file
+  last_invalid
+done
+
+#"refreshing" .zshrc if deleted
+if ! [ -f "$HOME/.zshrc" ]; then
+  ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+  last_invalid
+fi
+
+if ! [ -f "$HOME/.bashrc" ]; then
+  ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
   last_invalid
 fi
 
