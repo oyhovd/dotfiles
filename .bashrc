@@ -157,3 +157,4 @@ export PATH="$HOME/bin:$PATH"
 
 #default editor for fc command
 export FCEDIT=vim
+
