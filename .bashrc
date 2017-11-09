@@ -162,6 +162,6 @@ if [ ! -z "$PS1" ]; then
   export FCEDIT=vim
 
   #self update. Waiting is ugly hack to avoid conflicts.
-  ( (cd ~/dotfiles; sleep 1; (git stash && git pull --rebase && git stash pop;) > /dev/null 2>&1; if [ $? -ne 0 ]; then echo "Dotfiles self update failed. Check status and stash."; fi;) & )
+  ( (cd ~/dotfiles; sleep 1; git pull --rebase > /dev/null 2>&1; if [ $? -ne 0 ]; then echo "Dotfiles self update failed. Check status and stash."; fi;) & )
 
 fi #if interactive
