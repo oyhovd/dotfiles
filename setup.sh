@@ -133,6 +133,11 @@ if ! [ -f "$HOME/.bashrc" ]; then
   last_invalid
 fi
 
+if ! [ -f "$HOME/.zephyrrc" ]; then
+  ln -s $HOME/dotfiles/.zephyrrc $HOME/.zephyrrc
+  last_invalid
+fi
+
 echo "Setup done. Do sh extras.sh if needed."
 echo "TODO in script: Set up correct keyboard shortcuts?"
 

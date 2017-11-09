@@ -124,44 +124,7 @@ fi
 
 ##########################
 #zephyr-stuff
-export ZEPHYR_BASE="$HOME/devel/zephyr"
-export ZEPHYR_SDK_INSTALL_DIR="$HOME/opt/zephyr-sdk"
-export ZEPHYR_GCC_VARIANT=zephyr
 source $HOME/devel/zephyr/zephyr-env.sh > /dev/null 2>&1
-
-function cpatch()
-{
-  echo $1
-  find $1 -type f -exec ~/devel/zephyr/scripts/checkpatch.pl -f {} \;
-}
-
-function fnit()
-{
-  echo $1
-  echo $1zephyr.hex
-  pyocd-flashtool -d debug -t nrf52 -ce && pyocd-flashtool -d debug -t nrf52 $1zephyr.hex
-}
-
-function fdk52()
-{
-  echo $1
-  echo $1zephyr.hex
-  nrfjprog --eraseall -f nrf52 && nrfjprog --program $1zephyr.hex -f nrf52 && nrfjprog -r -f nrf52
-}
-
-function fdk51()
-{
-  echo $1
-  echo $1zephyr.hex
-  nrfjprog --eraseall -f nrf51 && nrfjprog --program $1zephyr.hex -f nrf51 && nrfjprog -r -f nrf51
-}
-
-function dbg52()
-{
-
-  JLinkGDBServer -device nrf52 -if swd -speed 4000 &
-  /home/carles/prog/zephyr-sdk/sysroots/i686-pokysdk-linux/usr/bin/arm-poky-eabi/arm-poky-eabi-gdb
-}
 
 ###########################################################
 #General stuff, platform independent
