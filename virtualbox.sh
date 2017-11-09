@@ -32,5 +32,8 @@ last_invalid
 sudo sh /media/cdrom/VBoxLinuxAdditions.run
 last_invalid
 
+#give access to self to shared folders
+sudo usermod -aG vboxsf $(whoami)
+
 echo "Setup done. Remember to reboot."
 
