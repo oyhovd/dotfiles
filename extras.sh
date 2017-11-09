@@ -13,11 +13,7 @@ exists()
   command -v $1 >/dev/null 2>&1
 }
 
-#other installs
-if exists pip3; then
-  sudo pip3 install thefuck
-  last_invalid
-fi
+sudo apt-get install -y minicom
 
 if exists pip; then
   pip install matplotlib
