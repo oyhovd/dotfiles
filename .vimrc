@@ -159,8 +159,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "nmap <c-g> :CtrlPBuffer<CR>
 
 "NERDTree stuff
-nmap <Leader>bn :NERDTree<CR>
-nmap <Leader>nt :NERDTree<CR>
+nmap <Leader>nt :NERDTreeFind<CR>
 
 "undotree stuff
 nmap <Leader>ut :UndotreeToggle<CR>
