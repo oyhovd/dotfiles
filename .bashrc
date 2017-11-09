@@ -158,3 +158,5 @@ export PATH="$HOME/bin:$PATH"
 #default editor for fc command
 export FCEDIT=vim
 
+#self update. Waiting is ugly hack to avoid conflicts.
+( (cd ~/dotfiles; sleep 1; (git stash && git pull --rebase && git stash pop;) > /dev/null 2>&1; if [ $? -ne 0 ]; then echo "Dotfiles self update failed. Check status and stash."; fi;) & )
