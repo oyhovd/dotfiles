@@ -183,7 +183,7 @@ function! EnableTagsUpdate()
   call DoTagsUpdateIfSet()
 endfunction
 
-command TagsUpdate call EnableTagsUpdate()
+command! TagsUpdate call EnableTagsUpdate()
 
 "TagBar stuff
 "also enable tags updating by opening the tagbar window this way
