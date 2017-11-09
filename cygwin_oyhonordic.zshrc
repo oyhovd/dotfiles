@@ -79,7 +79,7 @@ ZSH_THEME="oyho-cygwin"
 # git: git stuff
 # history-substring-search: type characters and press up arrow
 #
-plugins=(git history-substring-search expand-aliases)
+plugins=(git history-substring-search expand-aliases z)
 
 source $ZSH/oh-my-zsh.sh
 
