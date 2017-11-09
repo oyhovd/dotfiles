@@ -50,7 +50,7 @@ CASE_SENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 # git: git stuff
 # history-substring-search: type characters and press up arrow
-plugins=(git history-substring-search thefuck expand-aliases z)
+plugins=(git history-substring-search expand-aliases z)
 
 source $ZSH/oh-my-zsh.sh
 
