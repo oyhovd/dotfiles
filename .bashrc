@@ -1,5 +1,5 @@
 #only do if interactive
-if [ -z "$PS1" ]; then
+if [ ! -z "$PS1" ]; then
 
   ###########################################################
   #cygwin stuff, Nordic specific
