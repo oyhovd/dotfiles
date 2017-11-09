@@ -14,6 +14,7 @@ exists()
 }
 
 sudo apt-get install -y minicom
+sudo usermod -aG dialout $(whoami)
 
 if exists pip; then
   pip install matplotlib
