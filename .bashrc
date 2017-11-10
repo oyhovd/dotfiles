@@ -161,7 +161,15 @@ if [ ! -z "$PS1" ]; then
   #default editor for fc command
   export FCEDIT=vim
 
-  #self update. Waiting is ugly hack to avoid conflicts.
-  ( (cd ~/dotfiles; sleep 1; git pull --rebase > /dev/null 2>&1; if [ $? -ne 0 ]; then echo "Dotfiles self update failed. Check status and stash."; fi;) & )
+  #self update. Sleep is ugly hack to avoid conflicts.
+  if [ "$(cd ~/dotfiles; git status --porcelain | wc -l 2>/dev/null)" -ne "0" ]; then
+    #If status not empty
+    echo "Dotfiles status dirty. Autoupdate not performed."
+  elif [ "$(cd ~/dotfiles; git rev-list @{u}.. | wc -l 2>/dev/null)" -ne "0" ]; then
+    #If we have unpushed commits
+    echo "Dotfiles have unpushed commits. Autoupdate not performed."
+  else
+    ( (cd ~/dotfiles; sleep 1; git pull --rebase > /dev/null 2>&1; if [ $? -ne 0 ]; then echo "Dotfiles self update failed. Check status and stash."; fi;) & )
+  fi
 
 fi #if interactive
