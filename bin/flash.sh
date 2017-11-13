@@ -53,6 +53,11 @@ then
   FAMILY=1
 fi
 
+if [[ ${FIRST_DIGITS} -eq 681 ]]
+then
+  FAMILY=0
+fi
+
 if [[ $FAMILY = "" ]]
 then
 
