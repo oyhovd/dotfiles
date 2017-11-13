@@ -58,9 +58,6 @@ if [ ! -z "$PS1" ]; then
       export ARMLMD_LICENSE_FILE=1714@licsrv1.nvlsi.no
       export ARM_TOOL_VARIANT=mdk_pro_flex
 
-      #flash script
-      alias flash="$HOME/devel/debug-tools/flash"
-
       alias gdb="gdb-multiarch"
       alias jira="temp=/home/oyho/devel/jira_cmd python3 ~/devel/jira_cmd/jira.py"
 
@@ -120,8 +117,6 @@ if [ ! -z "$PS1" ]; then
     export CMOCKA_XML_FILE='./test-report.xml'           # Get the XML test report into the file test-report.xml
 
     export VisualStudioDisabled='true'
-
-    export PATH="$HOME/devel/debug-tools:$PATH"
 
   fi
 
