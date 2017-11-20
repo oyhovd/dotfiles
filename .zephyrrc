@@ -1,6 +1,7 @@
 export ZEPHYR_BASE="$HOME/devel/zephyr"
 export ZEPHYR_SDK_INSTALL_DIR="$HOME/opt/zephyr-sdk"
 export ZEPHYR_GCC_VARIANT=zephyr
+unset CC
 
 function cpatch()
 {
