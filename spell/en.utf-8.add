@@ -131,3 +131,6 @@ tx_phys
 rx_phys
 int32_t
 int64_t
+SoftDevice's
+_qos
+QoS
