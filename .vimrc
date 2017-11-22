@@ -40,11 +40,11 @@ set nostartofline
 
 "tabs and text width and stuff
 set cindent
-set shiftwidth=2
+set shiftwidth=4
 set expandtab
 set tabstop=4
-set colorcolumn=100
-set textwidth=100
+set colorcolumn=80
+set textwidth=80
 set formatoptions-=l
 set formatoptions-=t
 
@@ -271,4 +271,8 @@ let g:minimap_highlight='Visual'
 
 if getcwd() =~ 'zephyr'
   source ~/dotfiles/zephyr.vim
+endif
+
+if getcwd() =~ 'dragoon'
+  source ~/dotfiles/dragoon.vim
 endif
