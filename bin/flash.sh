@@ -58,6 +58,11 @@ then
   FAMILY=0
 fi
 
+if [[ ${FIRST_DIGITS} -eq 480 ]]
+then
+  FAMILY=0
+fi
+
 if [[ $FAMILY = "" ]]
 then
 
