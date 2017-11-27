@@ -270,9 +270,10 @@ endfunction
 let g:minimap_highlight='Visual'
 
 if getcwd() =~ 'zephyr'
-  source ~/dotfiles/zephyr.vim
-endif
-
-if getcwd() =~ 'dragoon'
-  source ~/dotfiles/dragoon.vim
+    set noexpandtab
+    set tabstop=8
+    set shiftwidth=8
+    set textwidth=80
+    set colorcolumn=80
+    au BufEnter * 2match Tabs /^\ \ \ \ \+/
 endif
