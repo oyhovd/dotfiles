@@ -153,7 +153,7 @@ if [ ! -z "$PS1" ]; then
   alias j='jobs'
 
   #adding private bin for overloading tools etc
-  export PATH="$HOME/bin:$PATH"
+  export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
   #default editor for fc command
   export FCEDIT=vim
