@@ -81,13 +81,13 @@ then
   echo ""
 fi
 
-COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR -e"
-echo $COMMAND
-eval $COMMAND
+#COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR -e"
+#echo $COMMAND
+#eval $COMMAND
 
 for I in "${@}"
 do
-  COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR --program $I"
+  COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR --program $I --sectoranduicrerase"
   echo $COMMAND
   eval $COMMAND
 done
