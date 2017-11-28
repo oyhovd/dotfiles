@@ -78,6 +78,8 @@ if [ ! -z "$PS1" ]; then
   #turn off nagging for password (turn of energy star)
   xset -dpms > /dev/null 2>&1
 
+  alias xs="xdg-open $1 >/dev/null 2>&1"
+
   ###########################################################
   #Nordic stuff, platform independent
   if [ -f "$HOME/.is_nordic" ]; then

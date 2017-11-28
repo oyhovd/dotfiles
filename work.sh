@@ -7,4 +7,8 @@ sudo apt-get install -y --no-install-recommends git cmake ninja-build gperf \
 #additional dependencies for zephyr projects
 sudo apt-get install -y libncurses5-dev
 
+#other stuff
+sudo apt-get install -y gcc-arm-none-eabi
+pip install nrfutil
+
 echo "Make sure to run \"pip3 install --user -r scripts/requirements.txt\" in the zephyr folder"

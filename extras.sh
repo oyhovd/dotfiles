@@ -13,7 +13,7 @@ exists()
   command -v $1 >/dev/null 2>&1
 }
 
-sudo apt-get install -y minicom python3-tk
+sudo apt-get install -y minicom python3-tk dos2unix
 sudo usermod -aG dialout $(whoami)
 
 if exists pip; then
