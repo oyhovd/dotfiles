@@ -7,6 +7,9 @@ sudo apt-get install -y --no-install-recommends git cmake ninja-build gperf \
 #additional dependencies for zephyr projects
 sudo apt-get install -y libncurses5-dev
 
+#for nrfconnect
+sudo apt-get install -y libgconf2-dev libcanberra-gtk-module
+
 #other stuff
 sudo apt-get install -y gcc-arm-none-eabi
 pip install nrfutil
