@@ -81,18 +81,29 @@ then
   echo ""
 fi
 
-#COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR -e"
-#echo $COMMAND
-#eval $COMMAND
+#do sectorerase if nRF52
+if [[ $FAMILY = "1" ]]
+then
+    for I in "${@}"
+    do
+        COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR --program $I --sectoranduicrerase"
+        echo $COMMAND
+        eval $COMMAND
+    done
 
-for I in "${@}"
-do
-  COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR --program $I --sectoranduicrerase"
-  echo $COMMAND
-  eval $COMMAND
-done
+else
+    COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR -e"
+    echo $COMMAND
+    eval $COMMAND
+
+    for I in "${@}"
+    do
+        COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR --program $I"
+        echo $COMMAND
+        eval $COMMAND
+    done
+fi
 
 COMMAND="nrfjprog --family ${FAMILIES[$FAMILY]} --snr $SEGNR -r"
 echo $COMMAND
 eval $COMMAND
-
