@@ -40,6 +40,9 @@ if [ ! -z "$PS1" ]; then
     #cygwin python
     alias cygpy="/cygdrive/c/cygwin64/bin/python"
 
+    #Segger embedded studio
+    export PATH="$PATH:/cygdrive/c/Program Files/SEGGER/SEGGER Embedded Studio 3.30/bin/"
+
   fi
 
   ###########################################################
