@@ -10,7 +10,7 @@ let g:terminal_scrollback_buffer_size = 100000
 "tnoremap <Esc> <C-\><C-n>
 
 colorscheme torte
-set guifont=Lucida_Console:h9:cANSI
+set guifont=Monospace\ 11
 set langmenu=en_US.UTF-8
 set history=2000
 set viminfo+=:2000
@@ -184,6 +184,9 @@ function! EnableTagsUpdate()
 endfunction
 
 command! TagsUpdate call EnableTagsUpdate()
+
+"Jedi-vim stuff
+autocmd FileType python setlocal omnifunc=jedi#completions
 
 "TagBar stuff
 "also enable tags updating by opening the tagbar window this way

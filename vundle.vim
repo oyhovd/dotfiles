@@ -48,7 +48,7 @@ if !has("win32unix")
 endif
 if has('nvim') || has('python') || has('python3')
   "Remember pip install jedi
-  "Plugin 'davidhalter/jedi-vim'
+  Plugin 'davidhalter/jedi-vim'
   Plugin 'severin-lemaignan/vim-minimap'
 endif
 
