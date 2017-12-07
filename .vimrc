@@ -280,3 +280,8 @@ if getcwd() =~ 'zephyr'
     set colorcolumn=80
     au BufEnter * 2match Tabs /^\ \ \ \ \+/
 endif
+
+if getcwd() =~ 'connomesikom'
+    au BufEnter * 2match none
+    au BufEnter * match none
+endif
