@@ -42,6 +42,7 @@ if [ ! -z "$PS1" ]; then
   if ! [ -f "$HOME/.is_cygwin" ]; then
     if [ -f "$HOME/.is_work" ]; then
         alias wireshark="sudo -v && sudo wireshark > /dev/null 2>&1 &"
+        alias logic="sudo -v && sudo ~/opt/Logic/Logic > /dev/null 2>&1 &"
     fi
   fi
 
