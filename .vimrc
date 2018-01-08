@@ -198,7 +198,7 @@ nmap <Leader>tb :TagbarToggle<CR>:let g:tagsupdate=1<CR>:let g:tagsupdate<CR>
 set grepprg=grep\ -n\ $*
 let grepexcludedirsall = '"*.git/*","build/*",outdir,CMakeFiles'
 let grepexcludedirstest = grepexcludedirsall . ',"*deploy*"'
-let grepexcludedirs = grepexcludedirsall . ',"*test","*deploy*"'
+let grepexcludedirs = grepexcludedirsall . ',"*deploy*"'
 let grepexcludefiles = '"objdump*","assert_table*","*.ninja*","flash_placement.xml","*.map","*.ld",tags,"tags.*"'
 "nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
 "nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
