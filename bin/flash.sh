@@ -9,6 +9,12 @@ fi
 #grepping to strip of newlines etc that bash doesn't handle well
 SEGNRS=($(nrfjprog -i | grep -e "\w"))
 
+if [[ ${#SEGNRS[@]} -eq 0 ]]
+then
+  echo "No devices found."
+  exit 1
+fi
+
 if [[ ${#SEGNRS[@]} -ne 1 ]]
 then
   for I in "${!SEGNRS[@]}"
