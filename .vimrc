@@ -164,6 +164,10 @@ nmap <Leader>nt :NERDTreeFind<CR>
 "undotree stuff
 nmap <Leader>ut :UndotreeToggle<CR>
 
+"cscope
+nnoremap <C-\> :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+
 "ctags
 let g:tagsupdate = 0
 

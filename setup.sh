@@ -21,7 +21,7 @@ exists()
 
 #install dependencies necessary for the installers in this file
 if exists apt-get; then
-  sudo apt-get -y install zsh vim ctags curl
+  sudo apt-get -y install zsh vim ctags curl cscope
   last_invalid
 fi
 
