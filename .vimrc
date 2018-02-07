@@ -83,13 +83,13 @@ endfor
 set spellfile=~/dotfiles/spell/en.utf-8.add
 
 hi clear SpellLocal
-hi SpellLocal cterm=undercurl ctermfg=cyan
+hi SpellLocal cterm=undercurl gui=undercurl ctermfg=cyan guifg=cyan
 hi clear SpellBad
-hi SpellBad cterm=undercurl ctermfg=red
+hi SpellBad cterm=undercurl gui=undercurl ctermfg=red guifg=red
 hi clear SpellCap
-hi SpellCap cterm=undercurl ctermfg=Blue
+hi SpellCap cterm=undercurl gui=undercurl ctermfg=Blue guifg=Blue
 hi clear SpellRare
-hi SpellRare cterm=undercurl ctermfg=Magenta
+hi SpellRare cterm=undercurl gui=undercurl ctermfg=Magenta guifg=Magenta
 
 set spell
 au FileType qf                       setlocal nospell
