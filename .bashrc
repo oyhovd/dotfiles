@@ -98,6 +98,9 @@ if [ ! -z "$PS1" ]; then
   #default editor for fc command
   export FCEDIT=vim
 
+  export HISTSIZE=90000
+  export SAVEHIST=90000
+
   #self update. Sleep is ugly hack to avoid conflicts.
   if [ "$(cd ~/dotfiles; git status --porcelain | wc -l 2>/dev/null)" -ne "0" ]; then
     #If status not empty
