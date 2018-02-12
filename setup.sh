@@ -83,7 +83,7 @@ done
 
 #other basic tools
 if exists apt-get; then
-  sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip
+  sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip cppcheck
   last_invalid
 fi
 
