@@ -95,6 +95,7 @@ set spell
 au FileType qf                       setlocal nospell
 au BufRead *.fugitiveblame           setlocal nospell
 au BufRead *.git//*                  setlocal nospell
+au BufRead *.hex                     setlocal nospell
 
 "highlighting
 au Bufenter * highlight WhitespaceEOL ctermbg=darkred guibg=darkred
@@ -200,7 +201,7 @@ nmap <Leader>tb :TagbarToggle<CR>:let g:tagsupdate=1<CR>:let g:tagsupdate<CR>
 "grepping
 "get rid of the /dev/null
 set grepprg=grep\ -n\ $*
-let grepexcludedirsall = '"*.git/*","build/*",outdir,CMakeFiles'
+let grepexcludedirsall = '".git","build",outdir,CMakeFiles'
 let grepexcludedirstest = grepexcludedirsall . ',"*deploy*"'
 let grepexcludedirs = grepexcludedirsall . ',"*deploy*"'
 let grepexcludefiles = '"objdump*","assert_table*","*.ninja*","flash_placement.xml","*.map","*.ld",tags,"tags.*"'
