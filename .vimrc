@@ -31,7 +31,7 @@ set completeopt+=longest
 set completeopt+=menuone
 "complete from spell list
 set complete+=kspell
-"set updatetime=250
+set updatetime=250
 let mapleader = "\<Space>"
 set undofile
 set undodir=~/.vim/undofiles
