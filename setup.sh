@@ -56,6 +56,8 @@ git config --global core.excludesfile $HOME/dotfiles/gitignore_global
 last_invalid
 git config --global core.editor "vim"
 last_invalid
+git config --global core.pager 'less -F -X --quit-if-one-screen'
+last_invalid
 
 #For GDB dashboard:
 if ! [ -f "$HOME/.gdbinit" ]; then
