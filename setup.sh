@@ -140,6 +140,8 @@ if ! [ -f "$HOME/.zephyrrc" ]; then
   last_invalid
 fi
 
+sudo adduser $USER vboxsf
+
 echo "Setup done. Do sh extras.sh if needed."
 echo "TODO in script: Set up correct keyboard shortcuts?"
 
