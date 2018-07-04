@@ -11,7 +11,7 @@ sudo apt-get install -y libncurses5-dev
 sudo apt-get install -y libgconf2-dev libcanberra-gtk-module
 
 #other stuff
-sudo apt-get install -y gcc-arm-none-eabi gcc-multilib
+sudo apt-get install -y gcc-arm-none-eabi gcc-multilib libcmocka-dev:i386
 pip install nrfutil
 
 echo "Make sure to run \"pip3 install --user -r scripts/requirements.txt\" in the zephyr folder"
