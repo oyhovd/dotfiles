@@ -207,10 +207,24 @@ let grepexcludedirs = grepexcludedirsall . ',"*deploy*"'
 let grepexcludefiles = '"objdump*","assert_table*","*.ninja*","flash_placement.xml","*.map","*.ld",tags,"tags.*"'
 "nmap <Leader>fc :cope<CR><c-W>W:gr! -r --include="*.[chsCHS]" -e "
 "nmap <Leader>fd :cope<CR><c-W>W:gr! -r --include="*.dita" --include="*.ditamap" -e "
-nmap <Leader>fa :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirsall<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
-nmap <Leader>ft :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirstest<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
-nmap <Leader>ff :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
-nmap <Leader>f/ :cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "<c-r>/"<CR>
+nmap <Leader>fx :call DeleteUnlistedBuffers()<CR>
+nmap <Leader>du :call DeleteUnlistedBuffers()<CR>
+nmap <Leader>fa :call DeleteUnlistedBuffers()<CR>:cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirsall<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
+nmap <Leader>ft :call DeleteUnlistedBuffers()<CR>:cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirstest<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
+nmap <Leader>ff :call DeleteUnlistedBuffers()<CR>:cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "
+nmap <Leader>f/ :call DeleteUnlistedBuffers()<CR>:cope<CR><c-W>W:gr! -r -I --exclude-dir={<c-r>=grepexcludedirs<CR>} --exclude={<c-r>=grepexcludefiles<CR>} -i -e "<c-r>/"<CR>
+
+"function to delete hidden buffers which slow vim down when there is a lot of
+"search hits
+function! DeleteUnlistedBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        if !buflisted(buf)
+            silent execute 'bwipeout' buf
+        endif
+    endfor
+endfunction
 
 "relative line numbers
 function! NumberToggle()
