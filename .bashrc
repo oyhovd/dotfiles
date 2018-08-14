@@ -54,7 +54,7 @@ if [ ! -z "$PS1" ]; then
 
       alias xs="xdg-open $1 >/dev/null 2>&1"
 
-      export PATH="$PATH:/usr/share/segger_embedded_studio_for_arm_3.40/bin/"
+      export PATH="$PATH:/usr/share/segger_embedded_studio_for_arm_3.50/bin/"
   fi
 
   ###########################################################
