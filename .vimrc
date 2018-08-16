@@ -29,6 +29,7 @@ set wildmode=list:longest  "(file-listing when opening a new file)
 set backspace=2
 set completeopt+=longest
 set completeopt+=menuone
+set completeopt-=preview
 "complete from spell list
 set complete+=kspell
 set updatetime=250
