@@ -49,6 +49,10 @@ set textwidth=80
 set formatoptions-=l
 set formatoptions-=t
 
+if has("autocmd")
+    filetype plugin indent on
+endif
+
 "syntax for jinja2 files.
 function! Jinja2Filetype()
   if @% =~# '.*\h\.jinja2'
