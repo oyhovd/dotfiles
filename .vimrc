@@ -198,6 +198,10 @@ command! TagsUpdate call EnableTagsUpdate()
 "Jedi-vim stuff
 autocmd FileType python setlocal omnifunc=jedi#completions
 
+"YouCompleteMe-stuff
+"let g:ycm_collect_identifiers_from_tags_files=1
+set tags=tags
+
 "TagBar stuff
 "also enable tags updating by opening the tagbar window this way
 nmap <Leader>bta :TagbarToggle<CR>:let g:tagsupdate=1<CR>:let g:tagsupdate<CR>
