@@ -200,6 +200,7 @@ autocmd FileType python setlocal omnifunc=jedi#completions
 
 "YouCompleteMe-stuff
 "let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_auto_trigger = 0
 set tags=tags
 
 "TagBar stuff
