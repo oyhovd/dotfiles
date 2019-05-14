@@ -6,6 +6,7 @@ if [ ! -z "$PS1" ]; then
   if [ -f "$HOME/.is_cygwin" ]; then
     if [ -f "$HOME/.is_work" ]; then
         #Nothing
+        :
     fi
   fi
 
@@ -61,6 +62,7 @@ if [ ! -z "$PS1" ]; then
   #work stuff, platform independent
   if [ -f "$HOME/.is_work" ]; then
       #Nothing
+      :
   fi
   ##########################
   #zephyr-stuff
@@ -83,10 +85,17 @@ if [ ! -z "$PS1" ]; then
   #show all git branches with last commiter
   alias glogallnames="git for-each-ref --sort=-committerdate  --format='%(committername) %(committerdate)   %(refname)' refs/remotes/origin"
 
+
   alias gl="git log --graph --decorate"
   alias gl1="git log -n1 --decorate"
   # Exclude all files in nuke-exclude from gnuke
   alias gnuke="git clean -xdf $(for line in `cat $HOME/dotfiles/gnuke-exclude`; do echo -n "--exclude=\"$line\" "; done)"
+  alias gapa='git add --patch'
+  alias gd='git diff'
+  alias gst='git status'
+  alias gnuke='git clean -xdf --exclude="tags"'
+  alias gco='git checkout'
+  alias gdca='git diff --cached'
 
   alias gchs='grep -r --include "*.[chsS]"'
 
