@@ -96,6 +96,7 @@ if [ ! -z "$PS1" ]; then
   alias gnuke='git clean -xdf --exclude="tags"'
   alias gco='git checkout'
   alias gdca='git diff --cached'
+  alias gclean='git clean -fd'
 
   alias gchs='grep -r --include "*.[chsS]"'
 
