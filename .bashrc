@@ -36,6 +36,8 @@ if [ ! -z "$PS1" ]; then
     #Segger embedded studio
     export PATH="$PATH:/cygdrive/c/Program Files/SEGGER/SEGGER Embedded Studio 3.30/bin/"
 
+    alias gitbash="'C://Program Files//Git//git-bash.exe'"
+
   fi
 
   ###########################################################
