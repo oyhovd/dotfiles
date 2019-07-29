@@ -1,9 +1,19 @@
 #only do if interactive
 if [ ! -z "$PS1" ]; then
 
+  unameOut="$(uname -s)"
+  case "${unameOut}" in
+      Linux*)     machine=Linux;;
+      Darwin*)    machine=Mac;;
+      CYGWIN*)    machine=Cygwin;;
+      MINGW*)     machine=MinGw;;
+      *)          machine="UNKNOWN:${unameOut}"
+  esac
+  echo ${machine}
+
   ###########################################################
   #cygwin stuff, work specific
-  if [ -f "$HOME/.is_cygwin" ]; then
+  if [ "$machine" = "Cygwin" ]; then
     if [ -f "$HOME/.is_work" ]; then
         #Nothing
         :
@@ -12,7 +22,7 @@ if [ ! -z "$PS1" ]; then
 
   ###########################################################
   #cygwin stuff, general
-  if [ -f "$HOME/.is_cygwin" ]; then
+  if [ "$machine" = "Cygwin" ]; then
 
     alias cs=cygstart
 
@@ -42,7 +52,7 @@ if [ ! -z "$PS1" ]; then
 
   ###########################################################
   #Debian stuff, work related
-  if ! [ -f "$HOME/.is_cygwin" ]; then
+  if ! [ "$machine" = "Cygwin" ]; then
     if [ -f "$HOME/.is_work" ]; then
         alias wireshark="sudo -v && sudo wireshark > /dev/null 2>&1 &"
         alias logic="sudo -v && sudo ~/opt/Logic/Logic > /dev/null 2>&1 &"
@@ -51,7 +61,7 @@ if [ ! -z "$PS1" ]; then
 
   ###########################################################
   #Debian stuff, general
-  if ! [ -f "$HOME/.is_cygwin" ]; then
+  if ! [ "$machine" = "Cygwin" ]; then
       #turn off nagging for password (turn of energy star)
       xset -dpms > /dev/null 2>&1
 
@@ -84,21 +94,30 @@ if [ ! -z "$PS1" ]; then
   #ninja with nice
   alias ninja="nice -n19 ninja"
 
+  if [ "$machine" = "Cygwin" ]; then
+#    NORMALGIT="/cygdrive/c/Program\ Files/Git/cmd/git"
+    NORMALGIT="git"
+    DEFAULTGIT="git"
+  else
+    NORMALGIT="git"
+    DEFAULTGIT="git"
+  fi
+
   #show all git branches with last commiter
-  alias glogallnames="git for-each-ref --sort=-committerdate  --format='%(committername) %(committerdate)   %(refname)' refs/remotes/origin"
+  alias glogallnames="$NORMALGIT for-each-ref --sort=-committerdate  --format='%(committername) %(committerdate)   %(refname)' refs/remotes/origin"
 
 
-  alias gl="git log --graph --decorate"
-  alias gl1="git log -n1 --decorate"
+  alias gl="$DEFAULTGIT log --graph --decorate"
+  alias gl1="$DEFAULTGIT log -n1 --decorate"
   # Exclude all files in nuke-exclude from gnuke
-  alias gnuke="git clean -xdf $(for line in `cat $HOME/dotfiles/gnuke-exclude`; do echo -n "--exclude=\"$line\" "; done)"
-  alias gapa='git add --patch'
-  alias gd='git diff'
-  alias gst='git status'
-  alias gnuke='git clean -xdf --exclude="tags"'
-  alias gco='git checkout'
-  alias gdca='git diff --cached'
-  alias gclean='git clean -fd'
+  alias gnuke="$NORMALGIT clean -xdf $(for line in `cat $HOME/dotfiles/gnuke-exclude`; do echo -n "--exclude=\"$line\" "; done)"
+  alias gapa='$DEFAULTGIT add --patch'
+  alias gd='$NORMALGIT diff'
+  alias gst='$NORMALGIT status'
+  alias gnuke='$NORMALGIT clean -xdf --exclude="tags"'
+  alias gco='$NORMALGIT checkout'
+  alias gdca='$NORMALGIT diff --cached'
+  alias gclean='$NORMALGIT clean -fd'
 
   alias gchs='grep -r --include "*.[chsS]"'
 
