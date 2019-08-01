@@ -9,7 +9,7 @@ if [ ! -z "$PS1" ]; then
       MINGW*)     machine=MinGw;;
       *)          machine="UNKNOWN:${unameOut}"
   esac
-  echo ${machine}
+#  echo ${machine}
 
   ###########################################################
   #cygwin stuff, work specific
