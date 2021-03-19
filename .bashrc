@@ -94,6 +94,13 @@ if [ ! -z "$PS1" ]; then
   #ninja with nice
   alias ninja="nice -n19 ninja"
 
+  #count line changes in diff, except blank lines and comment lines
+  #keeps only lines starting with single + or -
+  #keeps only lines starting with + or - and 0-n whitespaces and NOT comment character
+  #keeps only the + or -
+  #sorts and counts
+  alias linediffcount='grep -Eo "^[+-][^+-]*" | grep -Eo "^[+-]\ *[^/\ ].*" | grep -Eo "[+-]" | sort | uniq -c'
+
   if [ "$machine" = "Cygwin" ]; then
 #    NORMALGIT="/cygdrive/c/Program\ Files/Git/cmd/git"
     NORMALGIT="git"
