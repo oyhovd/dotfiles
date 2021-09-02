@@ -21,7 +21,7 @@ exists()
 
 #install dependencies necessary for the installers in this file
 if exists apt-get; then
-  sudo apt-get -y install zsh vim ctags curl cscope
+  sudo apt-get -y install zsh vim ctags curl
   last_invalid
 fi
 
@@ -85,7 +85,7 @@ done
 
 #other basic tools
 if exists apt-get; then
-  sudo apt-get -y install terminator python-dev python-pip python3-dev python3-pip cppcheck
+  sudo apt-get -y install python-dev-is-python3
   last_invalid
 fi
 
