@@ -58,7 +58,7 @@ Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'mbbill/undotree'
 
-Plugin 'brookhong/cscope.vim'
+"Plugin 'brookhong/cscope.vim'
 
 Plugin 'Valloric/YouCompleteMe'
 
