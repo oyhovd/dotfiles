@@ -94,4 +94,5 @@ source $HOME/dotfiles/.bashrc
 
 #Open html files in default app
 alias -s html=xdg-open
+alias ws=wslview
 
