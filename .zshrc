@@ -7,6 +7,8 @@
 
 if [ -f "$HOME/.is_cygwin" ]; then
     ZSH_THEME="oyho-cygwin"
+elif [ -f "$HOME/.is_wsl" ]; then
+    ZSH_THEME="oyho-cygwin"
 else
     ZSH_THEME="oyho"
 fi
