@@ -1,2 +1,3 @@
-"When enabling Easymotion in the vscodevim extension, this remaps the 2 letter search
+"Remember to set the "use .vimrc" option and the path to this file.
+"When enabling Easymotion in the vscodevim extension, this remaps the 2 letter search.
 nmap ;; <leader><leader>2s
