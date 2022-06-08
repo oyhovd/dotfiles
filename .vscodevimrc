@@ -1,0 +1,2 @@
+"When enabling Easymotion in the vscodevim extension, this remaps the 2 letter search
+nmap ;; <leader><leader>2s
