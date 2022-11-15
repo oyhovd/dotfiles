@@ -143,5 +143,7 @@ fi
 sudo adduser $USER vboxsf
 
 echo "Setup done. Do sh extras.sh if needed."
+echo "Now copy the themes and plugins from .oh-my-zsh to ~/.oh-my-zsh,"
+echo "and make symlinks to .vimrc and .zshrc in this folder."
 echo "TODO in script: Set up correct keyboard shortcuts?"
 
