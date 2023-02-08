@@ -102,6 +102,11 @@ au BufRead *.fugitiveblame           setlocal nospell
 au BufRead *.git//*                  setlocal nospell
 au BufRead *.hex                     setlocal nospell
 
+"disable spellcheck since normal case is not needing it.
+set nospell
+"disable wrap since normal case is not needing it.
+set nowrap
+
 "highlighting
 au Bufenter * highlight WhitespaceEOL ctermbg=darkred guibg=darkred
 au Bufenter * highlight Tabs ctermbg=blue guibg=blue
