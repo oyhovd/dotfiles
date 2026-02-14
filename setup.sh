@@ -21,7 +21,8 @@ exists()
 
 #install dependencies necessary for the installers in this file
 if exists apt-get; then
-  sudo apt-get -y install zsh vim ctags curl
+  # sudo apt-get -y install zsh vim ctags curl
+  sudo apt-get -y install zsh
   last_invalid
 fi
 
@@ -29,8 +30,8 @@ fi
 if ! [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   last_invalid
-  ln -s $HOME/dotfiles/.ctags $HOME/.ctags
-  last_invalid
+#  ln -s $HOME/dotfiles/.ctags $HOME/.ctags
+#  last_invalid
   ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
   last_invalid
   mkdir -p $HOME/.vim/swapfiles
@@ -60,13 +61,13 @@ git config --global core.pager 'less -F -X --quit-if-one-screen'
 last_invalid
 
 #For GDB dashboard:
-if ! [ -f "$HOME/.gdbinit" ]; then
-  if exists wget; then
-    wget -P ~ git.io/.gdbinit
-    #(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
-    last_invalid
-  fi
-fi
+# if ! [ -f "$HOME/.gdbinit" ]; then
+#   if exists wget; then
+#     wget -P ~ git.io/.gdbinit
+#     #(or git clone https://github.com/cyrus-and/gdb-dashboard.git and symlink it)
+#     last_invalid
+#   fi
+# fi
 
 #copy all config files
 #first create all folders
@@ -84,10 +85,10 @@ for file in `find .config -type f`; do
 done
 
 #other basic tools
-if exists apt-get; then
-  sudo apt-get -y install python-dev-is-python3
-  last_invalid
-fi
+# if exists apt-get; then
+#   sudo apt-get -y install python-dev-is-python3
+#   last_invalid
+# fi
 
 #apt cleanup
 if exists apt-get; then
@@ -140,7 +141,7 @@ if ! [ -f "$HOME/.zephyrrc" ]; then
   last_invalid
 fi
 
-sudo adduser $USER vboxsf
+# sudo adduser $USER vboxsf
 
 echo "Setup done. Do sh extras.sh if needed."
 echo "Now copy the themes and plugins from .oh-my-zsh to ~/.oh-my-zsh,"
